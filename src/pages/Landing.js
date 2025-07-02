@@ -9,10 +9,9 @@ import FlightSearchBar from '../Components/FlightSearchBar/FlightSearchBar';
 const Landing = () => {
 
   return (
-    // <FlightSearchBar/>
-    // <DCardApi/>
-    // <SignIn/>
-    <SignUp/>
+   <div>
+    
+   </div>
   )
 }
 
