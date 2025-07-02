@@ -1,6 +1,6 @@
-import '../DealsCard.css'
+import './DealsCard.css'
 import React from 'react'
-import Dealscard from '../Component/Dealscard';
+import Dealscard from './Dealscard';
 
 const DCardApi = () => {
 
@@ -53,6 +53,15 @@ const DCardApi = () => {
     price: '22,000 Rs',
     airline: 'FlyDubai',
   },
+  {
+    id: 6,
+    image:
+      'https://plus.unsplash.com/premium_photo-1694475634077-e6e4b623b574?q=80&w=1071&auto=format&fit=crop',
+    landmark: 'Burj Khalifa',
+    city: 'Dubai',
+    price: '22,000 Rs',
+    airline: 'FlyDubai',
+  }
 ];
 
 

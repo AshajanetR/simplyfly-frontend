@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import SignUp from '../Component/SignUp';
-import SignIn from '../Component/SignIn';
-import Dealscard from '../Component/Dealscard';
-import DCardApi from './DCardApi';
+import SignUp from '../Components/SignUp/SignUp';
+import SignIn from '../Components/SignIn/SignIn';
+import Dealscard from '../Components/DealsCard/Dealscard';
+import DCardApi from '../Components/DealsCard/DCardApi';
 import FlightSearchBar from '../Components/FlightSearchBar/FlightSearchBar';
 
 
 const Landing = () => {
 
   return (
-    <FlightSearchBar/>
+    // <FlightSearchBar/>
+    // <DCardApi/>
+    // <SignIn/>
+    <SignUp/>
   )
 }
 

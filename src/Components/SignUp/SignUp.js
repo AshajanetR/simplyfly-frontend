@@ -3,7 +3,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Flex,Typography, Modal } from 'antd';
 // import Title from 'antd/es/skeleton/Title';
 const { Title } = Typography;
-const SignIn = () => {
+const SignUp = () => {
   const onFinish = values => {
     console.log('Received values of form: ', values);
   };
@@ -20,7 +20,12 @@ const SignIn = () => {
       onFinish={onFinish}
       
     >
-      
+      <Form.Item
+        name="username"
+        rules={[{ required: true, message: 'Please input your Username!' }]}
+      >
+        <Input prefix={<UserOutlined />} placeholder="Username" />
+      </Form.Item>
       <Form.Item
         name="email"
         rules={[{ required: true, message: 'Please input your Email!' }]}
@@ -33,24 +38,28 @@ const SignIn = () => {
       >
         <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
       </Form.Item>
-      
+      <Form.Item
+        name="cpassword"
+        rules={[{ required: true, message: 'Please confirm password!' }]}
+      >
+        <Input prefix={<LockOutlined />} type="password" placeholder="Confirm Password" />
+      </Form.Item>
       <Form.Item>
         <Flex justify="space-between" align="center">
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-          <a href="">Forgot password</a>
         </Flex>
       </Form.Item>
 
       <Form.Item>
-        <Button block type="primary" htmlType="submit">
-          Log In
+        <Button block type="primary" htmlType="submit" style={{backgroundColor : '#605DEC'}}>
+          Create Account
         </Button>
-        or <a href="">Register now!</a>
+        or <a href="" style={{color : '#605DEC'}}>Login now!</a>
       </Form.Item>
     </Form>
     </Modal>
   );
 };
-export default SignIn;
+export default SignUp;
