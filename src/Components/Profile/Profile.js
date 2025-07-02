@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Avatar } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import '../CssFiles/Profile.css';
-import ProfileImg from '../images/ProfileImg.jpg';
+import './Profile.css';
+import ProfileImg from '../../images/ProfileImg.jpg';
 
 const Profile = () => {
   const handleClose = () => {
