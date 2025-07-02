@@ -1,9 +1,9 @@
-import Landing from "./pages/Landing";
+import Testimonals from "./Components/Testimonials/Testimonals";
 
 const App = () => {
   return (
     <div>
-      <Landing />
+      <Testimonals />
     </div>
   )
 }
