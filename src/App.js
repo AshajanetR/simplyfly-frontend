@@ -1,13 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import Landing from "./pages/Landing";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello world!</h1>
-      <h1>Hello!!!</h1>
+    <div>
+      <Landing />
     </div>
-  );
+  )
 }
 
 export default App;
