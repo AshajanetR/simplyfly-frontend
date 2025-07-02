@@ -1,12 +1,12 @@
 // src/components/Header.js
 import React from 'react';
 import { Layout, Button } from 'antd';
-import '../CssFiles/Header.css';
+import '../CssFiles/HeaderBefore.css';
 import LogoImg from '../images/LogoImg.png'; // Adjust the path as necessary
 
 const { Header } = Layout;
 
-const AppHeader = () => {
+const HeaderBefore = () => {
   return (
     <Header className="app-header">
       <div className="logo">
@@ -22,4 +22,4 @@ const AppHeader = () => {
   );
 };
 
-export default AppHeader;
+export default HeaderBefore;
