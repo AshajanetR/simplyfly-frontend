@@ -1,7 +1,11 @@
+import FlightSearchBar from "../Components/FlightSearchBar/FlightSearchBar";
+
 
 const Landing = () => {
   return (
-    <div>Landing</div>
+    <div>
+      <FlightSearchBar />
+    </div>
   )
 }
 
