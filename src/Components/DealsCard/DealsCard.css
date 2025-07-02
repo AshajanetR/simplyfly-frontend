@@ -1,0 +1,41 @@
+.deal-card-image {
+  height: 300px;
+  width: 300%;
+  object-fit: cover;
+}
+
+.deal-card-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.deal-location {
+  color: #605DEC;
+}
+
+.deal-landmark {
+  color: #7C8DB0;
+}
+
+.deal-price {
+  color: #7C8DB0;
+}
+
+.deal-airline {
+  color: #7C8DB0;
+  font-weight: lighter;
+}
+
+.deals-card-container {
+  display: flex;
+  justify-content: center;      /* center horizontally */
+  flex-wrap: wrap;              /* allow multiple rows */
+  gap: 20px;                    /* space between cards */
+  max-width: 1000px;            /* limit row width */
+  margin: 40px auto;            /* center the container */
+}
+
+.deals-card-container > * {
+  flex: 0 0 calc(33.33% - 20px); /* 3 cards per row */
+  box-sizing: border-box;
+}
