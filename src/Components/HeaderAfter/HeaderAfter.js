@@ -1,9 +1,9 @@
 // src/components/HeaderAfterLogin.js
 import React from 'react';
 import { Layout, Avatar } from 'antd';
-import '../CssFiles/HeaderAfter.css';
-import LogoImg from '../images/LogoImg.png';
-import ProfileImg from '../images/ProfileImg.jpg';
+import './HeaderAfter.css';
+import LogoImg from '../../images/LogoImg.png';
+import ProfileImg from '../../images/ProfileImg.jpg';
 
 const { Header } = Layout;
 
