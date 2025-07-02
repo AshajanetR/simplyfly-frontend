@@ -11,7 +11,6 @@ const Profile = () => {
 
   const [form] = Form.useForm();
 
-  // Example initial values from sign-up
   const initialValues = {
     name: 'Sai Harshal Jog',
     email: 'saijog66@gmail.com',
