@@ -1,0 +1,45 @@
+.footer-container {
+  background-color: #ffffff;
+  padding: 40px 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.footer-container > div {
+  flex: 1;
+  min-width: 180px;
+}
+
+.footer-logo {
+  flex: 1;
+  min-width: 180px;
+}
+
+
+.footer-container img {
+  height: 200px;
+  object-fit: contain;
+}
+
+.footer-container li {
+  list-style: none;
+  margin-bottom: 8px;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.footer-container li:first-child {
+  font-weight: 600;
+  color: #6E7491;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.footer-container li:hover {
+  color: #4B4AEF;
+}
