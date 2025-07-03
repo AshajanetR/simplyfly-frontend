@@ -7,15 +7,14 @@ import FlightSearchBar from '../Components/FlightSearchBar/FlightSearchBar';
 import Profile from '../Components/Profile/Profile';
 import HeaderBefore from '../Components/HeaderBefore/HeaderBefore';
 import HeaderAfter from '../Components/HeaderAfter/HeaderAfter';
+import FooterApp from '../Components/Footer/FooterApp';
 
 
 const Landing = () => {
 
   return (
    <div>
-        {/* <Profile/> */}
-        {/* <HeaderBefore/> */}
-        <HeaderAfter/>
+        
    </div>
   )
 }
