@@ -1,5 +1,4 @@
-// src/components/HeaderAfterLogin.js
-import React from 'react';
+
 import { Layout, Avatar } from 'antd';
 import './HeaderAfter.css';
 import LogoImg from '../../images/LogoImg.png';
