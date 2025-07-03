@@ -8,16 +8,15 @@ import Profile from '../Components/Profile/Profile';
 import HeaderBefore from '../Components/HeaderBefore/HeaderBefore';
 import HeaderAfter from '../Components/HeaderAfter/HeaderAfter';
 import FooterApp from '../Components/Footer/FooterApp';
-import Testimonials from '../Components/Testimonials/Testimonals';
+import CompDropdown from '../Components/CompDropdown/CompDropdown';
+import Testimonials from '../Components/Testimonials/Testimonials';
 
 
 const Landing = () => {
 
   return (
    <div>
-        {/* <Profile/> */}
-        {/* <HeaderBefore/> */}
-        <HeaderAfter/>
+       
    </div>
   )
 }
