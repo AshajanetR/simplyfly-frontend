@@ -11,7 +11,6 @@ const Dealscard = ({image,landmark,city,price,airline}) => (
       <img
         alt="example"
         src={image}
-        // src='../logo192.png'
         className="deal-card-image"
       />
     }

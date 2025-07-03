@@ -1,11 +1,8 @@
-import Landing from "./pages/Landing";
-import CompDropdown from "./Components/CompDropdown/CompDropdown";
-import DateDropdown from "./Components/DateDropdown/DateDropdown";
+import Landing from "./pages/Landing.js";
 const App = () => {
   return (
     <div>
-      <CompDropdown />
-      <DateDropdown />
+    <Landing />
     </div>
   )
 }

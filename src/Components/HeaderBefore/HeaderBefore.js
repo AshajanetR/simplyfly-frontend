@@ -1,8 +1,8 @@
-// src/components/Header.js
-import React from 'react';
+
+
 import { Layout, Button } from 'antd';
 import './HeaderBefore.css';
-import LogoImg from '../../images/LogoImg.png'; // Adjust the path as necessary
+import LogoImg from '../../images/LogoImg.png'; 
 
 const { Header } = Layout;
 
