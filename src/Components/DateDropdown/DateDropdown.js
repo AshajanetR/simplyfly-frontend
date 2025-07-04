@@ -1,40 +1,84 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DatePicker, Radio, Button } from 'antd';
 import './DateDropdown.css';
 import calendarIcon from '../../images/Calendar.png';
+import dayjs from 'dayjs';
 
 const { RangePicker } = DatePicker;
 
 const DateDropdown = () => {
   const [tripType, setTripType] = useState('round');
-  const [dates, setDates] = useState([]);
-  const [showCalendar, setShowCalendar] = useState(false);
+  const [departDate, setDepartDate] = useState(null);
+  const [returnDate, setReturnDate] = useState(null);
+  const [oneWayDate, setOneWayDate] = useState(null);
+  const [selectedDates, setSelectedDates] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(dayjs());
 
-  const formatDate = (date) => (date ? date.format('MMM D') : '');
+  const wrapperRef = useRef(null);
 
-  const formattedLabel =
-    dates.length === 2
-      ? `${formatDate(dates[0])} - ${formatDate(dates[1])}`
-      : 'Depart - Return';
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const formatDate = (date) => (date ? dayjs(date).format('MMM D') : '');
+
+  const formattedInputLabel = () => {
+    if (tripType === 'round' && selectedDates?.length === 2) {
+      return `${formatDate(selectedDates[0])} - ${formatDate(selectedDates[1])}`;
+    }
+    if (tripType === 'one' && selectedDates) {
+      return `${formatDate(selectedDates)}`;
+    }
+    return 'Depart - Return';
+  };
+
+  const handleDone = () => {
+    if (tripType === 'round') {
+      setSelectedDates([departDate, returnDate]);
+    } else {
+      setSelectedDates(oneWayDate);
+    }
+    setOpen(false);
+  };
+
+  const isDoneDisabled =
+    (tripType === 'round' && (!departDate || !returnDate)) ||
+    (tripType === 'one' && !oneWayDate);
+
+  const disabledDateForReturn = (current) => {
+    return current && departDate && current.isBefore(departDate, 'day');
+  };
+
+  const handleToggleOpen = () => {
+    setOpen((prev) => !prev);
+  };
 
   return (
-    <div className="date-dropdown-wrapper">
-      {/* Clickable Box to Toggle Calendar */}
-      <div className="date-box" onClick={() => setShowCalendar(!showCalendar)}>
+    <div className="date-dropdown-wrapper" ref={wrapperRef}>
+      <div className={`date-box ${open ? 'active' : ''}`} onClick={handleToggleOpen}>
         <img src={calendarIcon} alt="calendar" className="calendar-icon" />
-        {formattedLabel}
+        {formattedInputLabel()}
       </div>
 
-      {/* Full Panel Appears Inline */}
-      {showCalendar && (
-        <div className="calendar-full-panel">
-          <div className="calendar-header">
+      {open && (
+        <div className="calendar-panel">
+          <div className="top-row">
             <Radio.Group
               value={tripType}
               onChange={(e) => {
                 const selected = e.target.value;
                 setTripType(selected);
-                if (selected === 'one') setDates([]);
+                setDepartDate(null);
+                setReturnDate(null);
+                setOneWayDate(null);
+                setSelectedDates(null);
               }}
             >
               <Radio value="round">Round trip</Radio>
@@ -43,31 +87,56 @@ const DateDropdown = () => {
 
             <div className="input-preview">
               <img src={calendarIcon} alt="calendar" className="calendar-icon" />
-              <span>{formattedLabel}</span>
+              <span>
+                {tripType === 'round'
+                  ? `${formatDate(departDate) || 'Depart'} - ${formatDate(returnDate) || 'Return'}`
+                  : `${formatDate(oneWayDate) || 'Depart'}`}
+              </span>
             </div>
 
             <Button
               type="primary"
               className="done-btn"
-              onClick={() => setShowCalendar(false)}
+              onClick={handleDone}
+              disabled={isDoneDisabled}
             >
               Done
             </Button>
           </div>
 
-          {/* Calendar Picker (inside same box) */}
-          <div className="inline-calendar">
-            <RangePicker
-              allowClear={false}
-              value={dates}
-              onChange={(val) => setDates(val || [])}
+          {tripType === 'round' ? (
+            <div className="dual-calendars">
+              <DatePicker
+                value={departDate}
+                onChange={(val) => {
+                  setDepartDate(val);
+                  if (val) setCurrentMonth(dayjs(val));
+                }}
+                format="MMM D"
+                allowClear={false}
+                className="calendar"
+                defaultPickerValue={currentMonth}
+              />
+              <DatePicker
+                value={returnDate}
+                onChange={(val) => setReturnDate(val)}
+                format="MMM D"
+                allowClear={false}
+                className="calendar"
+                disabledDate={disabledDateForReturn}
+                defaultPickerValue={currentMonth}
+              />
+            </div>
+          ) : (
+            <DatePicker
+              value={oneWayDate}
+              onChange={(val) => setOneWayDate(val)}
               format="MMM D"
-              open
-              className="hidden-range"
-              dropdownClassName="remove-popup"
-              panelRender={(panel) => panel}
+              allowClear={false}
+              className="calendar"
+              defaultPickerValue={currentMonth}
             />
-          </div>
+          )}
         </div>
       )}
     </div>
