@@ -1,0 +1,51 @@
+.payment {
+  padding: 20px 0;
+  
+}
+
+
+.payment-container{
+  margin-left: 30px;
+}
+
+.payment-form .ant-form-item {
+  margin-bottom: 10px;
+}
+.payment h1 {
+  font-size: 22px;
+  margin-bottom: 22px;
+  font-weight: 600;
+  color: #605DEC;
+}
+
+.payment button {
+  border-radius: 5px;
+  border: none;
+  padding: 12px 18px;
+  background-color: #605DEC;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payment button:hover {
+  background-color: white;
+  color: #605DEC;
+  border: 1px solid #605DEC;
+}
+.inline-input-3{
+    width: 60%;
+}
+.inline-input-2{
+    width: 60%;
+}
+
+.inline-input-4 {
+  display: inline-block;
+  width: calc(40% - 8px);
+}
+
+.inline-input-4.margin {
+  margin-left: 8px;
+}
