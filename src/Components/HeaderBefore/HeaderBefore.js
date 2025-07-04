@@ -1,5 +1,3 @@
-
-
 import { Layout, Button } from 'antd';
 import './HeaderBefore.css';
 import LogoImg from '../../images/LogoImg.png'; 
