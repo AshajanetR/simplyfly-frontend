@@ -1,6 +1,7 @@
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Flex,Typography, Modal } from 'antd';
+import { Button, Checkbox, Form, Input, Flex,Typography, Modal, Select } from 'antd';
+const { Option } = Select;
 const { Title } = Typography;
 const SignUp = () => {
   const onFinish = values => {
@@ -32,6 +33,17 @@ const SignUp = () => {
         <Input prefix={<UserOutlined />} placeholder="Email" />
       </Form.Item>
       <Form.Item
+        name="role"
+        rules={[{ required: true, message: 'Please input your Email!' }]}
+      >
+        {/* <Input prefix={<UserOutlined />} placeholder="Role" /> */}
+          <Select placeholder="Select a role">
+            <Option value="USER">User</Option>
+            <Option value="ADMIN">Admin</Option>
+            <Option value="OWNER">Owner</Option>
+          </Select>
+      </Form.Item>
+      <Form.Item
         name="password"
         rules={[{ required: true, message: 'Please input your Password!' }]}
       >
@@ -52,7 +64,7 @@ const SignUp = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button block type="primary" htmlType="submit" style={{backgroundColor : '#605DEC'}}>
+        <Button block type="primary" htmlType="submit" style={{backgroundColor : '#605DEC', color : '#fff'}}>
           Create Account
         </Button>
         or <a href="" style={{color : '#605DEC'}}>Login now!</a>
