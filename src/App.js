@@ -1,8 +1,9 @@
 import Landing from "./pages/Landing.js";
+
 const App = () => {
   return (
     <div>
-    <Landing />
+      <Landing />
     </div>
   )
 }
