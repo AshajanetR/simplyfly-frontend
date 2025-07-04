@@ -1,0 +1,38 @@
+.flight-card {
+  width: 400px;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.emoji-logo {
+  font-size: 28px;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.flight-time {
+  text-align: right;
+}
+
+.flight-code {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.layover {
+  color: #60a5fa;
+  font-size: 13px;
+}
+
+.price-breakdown {
+  margin-top: 16px;
+  font-size: 15px;
+}
+
+.price-breakdown .ant-typography {
+  line-height: 2;
+}
