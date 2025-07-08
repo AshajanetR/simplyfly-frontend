@@ -20,6 +20,11 @@ const Landing = () => {
 
   return (
    <div>
+       <HeaderBefore />
+       <FlightSearchBar />
+       <DCardApi />
+       <Testimonials />
+       <FooterApp />
    </div>
   )
 }

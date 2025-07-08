@@ -6,7 +6,7 @@ const { Text, Title } = Typography;
 
 const FlightSummaryCard = () => {
   return (
-    <Card className="flight-card" bordered>
+    <Card className="flight-card2" bordered>
       <div>
         <Row justify="space-between" align="middle">
         <Col>
