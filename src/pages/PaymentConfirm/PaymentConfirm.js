@@ -5,15 +5,19 @@ import BookingAlert from '../../Components/BookingAlert/BookingAlert';
 import BookingConfirmation from '../../Components/BookingConfirmation/BookingConfirmation';
 import { Link } from 'react-router-dom'
 import Button from '../../Components/Button/ButtonComp';
+import './PaymentConfirm.css'
 
 const PaymentConfirm = () => {
   return (
     <div>
         <BookingAlert />
-        <BookingConfirmation />
+        <div className='book-flight'>
+          <BookingConfirmation />
+          <FlightSummaryCard />
+        </div>
         <FlightCard />
-        <FlightSummaryCard />
-        <div className='buttons'>
+        
+        <div className='buttons-confirm'>
               <Link to="/tickets"><Button /></Link>                  
         </div>
     </div>

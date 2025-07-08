@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
-import Landing from '../pages/Landing';
+import Landing from '../pages/Landing/Landing';
 import SignUp from '../Components/SignUp/SignUp';
 import SignIn from '../Components/SignIn/SignIn';
 import Flights from '../pages/Flights';

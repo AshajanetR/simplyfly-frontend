@@ -13,7 +13,7 @@ const Passenger = () => {
             <div className='left1'>
                 <PassengerInfo/>
                 <TotalPassenger />
-                <div className='buttons'>
+                <div className='buttons-passenger'>
                   <Link to="/flights"><Button /></Link>
                   <Link to="/seats"><Button /></Link>
                 </div>

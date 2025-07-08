@@ -5,7 +5,9 @@
     margin:30px 100px;
 }
 
-.buttons{
+.buttons-passenger{
     display: flex;
     flex-direction: row;
+    gap: 75px;
+    margin-top: 20px;
 }
