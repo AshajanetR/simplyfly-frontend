@@ -22,10 +22,11 @@ const Landing = () => {
 
   return (
    <div>
-    {/* <DCardApi/> */}
-    <TotalPassenger/>
-    <FlightSummaryCard/>
-    {/* <SignUp/> */}
+       <HeaderBefore />
+       <FlightSearchBar />
+       <DCardApi />
+       <Testimonials />
+       <FooterApp />
    </div>
   )
 }

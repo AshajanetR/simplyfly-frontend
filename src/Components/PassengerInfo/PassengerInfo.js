@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import './PassengerInfo.css';
+import TotalPassenger from '../TotalPassenger/TotalPassenger';
 
 const onFinish = (values) => {
   console.log('Received values of form: ', values);
@@ -61,9 +62,10 @@ const PassengerInfo = () => (
         <Input placeholder="Known traveller number*" />
       </Form.Item>
     </div>
-
+    
    
   </Form>
+  
 );
 
 export default PassengerInfo;
