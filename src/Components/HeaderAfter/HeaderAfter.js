@@ -1,4 +1,3 @@
-
 import { Layout, Avatar } from 'antd';
 import './HeaderAfter.css';
 import LogoImg from '../../images/LogoImg.png';

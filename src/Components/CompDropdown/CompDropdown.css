@@ -1,6 +1,38 @@
+.dropdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .dropdown-container {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: flex-start;
   margin-top: 40px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
+
+.search-button {
+  background-color: #5a67d8;
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 10px 28px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.search-button:hover {
+  background-color: #434db0;
+}
+
+.calendar-panel,
+.passenger-panel {
+  position: absolute;       
+  z-index: 1000;            
+}
+

@@ -1,5 +1,6 @@
 .flight-dropdown-wrapper {
   width: 250px;
+  height: 100px;
   position: relative;
 }
 
@@ -15,13 +16,21 @@
   gap: 8px;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  height: 40px;
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+}
+
+.flight-dropdown:hover .ant-select-selector {
+  border-color: #5a67d8;
+  box-shadow: 0 0 0 2px rgba(90, 103, 216, 0.2);
 }
 
 .flight-dropdown.ant-select-focused .ant-select-selector {
   border: 2px solid #5a67d8 !important;
+  box-shadow: 0 0 0 2px rgba(90, 103, 216, 0.2);
 }
-
 
 .custom-placeholder {
   display: flex;
@@ -44,4 +53,3 @@
   background-color: #5a67d8;
   color: #ffffff;
 }
-
