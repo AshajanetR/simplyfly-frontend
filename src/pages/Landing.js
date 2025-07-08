@@ -14,12 +14,18 @@ import PassengerInfo from '../Components/PassengerInfo/PassengerInfo';
 import TotalPassenger from '../Components/TotalPassenger/TotalPassenger';
 import FlightSummaryCard from '../Components/FlightSummaryCard/FlightSummaryCard';
 import PaymentDetail from '../Components/PaymentDetail/PaymentDetail';
+import FlightCard from '../Components/Flightcard/Flightcard';
+import FlightInfoCard from '../Components/FlightInfoCard/FlightInfoCard';
 
 
 const Landing = () => {
 
   return (
    <div>
+    {/* <DCardApi/> */}
+    <TotalPassenger/>
+    <FlightSummaryCard/>
+    {/* <SignUp/> */}
    </div>
   )
 }

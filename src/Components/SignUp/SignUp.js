@@ -1,5 +1,5 @@
 
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Flex,Typography, Modal, Select } from 'antd';
 const { Option } = Select;
 const { Title } = Typography;
@@ -55,13 +55,13 @@ const SignUp = () => {
       >
         <Input prefix={<LockOutlined />} type="password" placeholder="Confirm Password" />
       </Form.Item>
-      <Form.Item>
-        <Flex justify="space-between" align="center">
-          <Form.Item name="remember" valuePropName="checked" noStyle>
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-        </Flex>
+      <Form.Item
+        name="contact"
+        rules={[{ required: true, message: 'Please enter contact number' }]}
+      >
+        <Input prefix={<PhoneOutlined />} type="password" placeholder="Contact number" />
       </Form.Item>
+      
 
       <Form.Item>
         <Button block type="primary" htmlType="submit" style={{backgroundColor : '#605DEC', color : '#fff'}}>
