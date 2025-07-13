@@ -9,6 +9,9 @@ import Seats from  '../pages/Seats/Seats'
 import PaymentDetails from '../pages/PaymentDetails/PaymentDetails';
 import Tickets from '../pages/Tickets/Tickets';
 import PaymentConfirm from '../pages/PaymentConfirm/PaymentConfirm';
+import Home from '../pages/Home/Home';
+import MyTrips from '../pages/MyTrips/MyTrips';
+import Profile from '../Components/Profile/Profile';
 
 const Routing = () => {
   return (
@@ -23,6 +26,9 @@ const Routing = () => {
             <Route path = "/paymentDetails" element ={<PaymentDetails />}/>
             <Route path = "/paymentConfirm" element ={<PaymentConfirm />}/>
             <Route path = "/tickets" element ={<Tickets />}/>
+            <Route path = "/home" element ={<Home />}/>
+            <Route path = "/myTrips" element ={<MyTrips />}/>
+            <Route path = "/profileInfo" element ={<Profile />}/>
         </Routes>
     </div>
   )

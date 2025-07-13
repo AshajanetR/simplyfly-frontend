@@ -1,11 +1,14 @@
 .landing-page{
     background-image: url('../../images/Hero.png');
     height: 80vh;
-    padding-top: 50px;
+    /* padding-top: 50px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .click-book-fly {
-  font-size: 48px;
+  font-size: 68px;
   font-weight: bold;
   background: linear-gradient(45deg, #3b82f6, #8b5cf6); /* blue to violet */
   -webkit-background-clip: text;
@@ -13,4 +16,5 @@
   background-clip: text;
   text-align: center;
   letter-spacing: 1px;
+  padding-bottom: 10px;
 }
