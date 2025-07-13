@@ -1,5 +1,6 @@
 import { FaPlaneDeparture, FaPlaneArrival, FaCalendarAlt, FaUser } from "react-icons/fa";
 import "./FlightSearchBar.css"
+import { Link } from "react-router-dom";
 
 const FlightSearchBar = () => {
   return (
@@ -24,7 +25,7 @@ const FlightSearchBar = () => {
         <button className="input-btn">1 adult</button>
       </div>
 
-      <button className="search-button">Search</button>
+      <Link to="/signIn"><button className="search-button">Search</button></Link>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const PaymentDetail = () => {
           onFinish={onFinish}
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
-          style={{ maxWidth: 800 }}
+          style={{ maxWidth: 1200 }}
           className='payment-form'
         >
           <Form.Item  className="form-inline-group">

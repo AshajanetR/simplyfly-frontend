@@ -4,8 +4,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 40px;
+  width:1580px;
+  margin-left:90px;
 }
 
 .footer-container > div {

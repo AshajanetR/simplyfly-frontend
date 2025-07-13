@@ -1,0 +1,8 @@
+.book-flight{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+}
+.buttons-confirm{
+    margin: 50px;
+}

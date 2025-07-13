@@ -1,0 +1,10 @@
+.buttons-seats{
+    display: flex;
+    flex-direction: row;
+    gap: 75px;
+    margin-top: 20px;
+}
+.flightInfoCard{
+    display: flex;
+  justify-content: flex-end;
+}

@@ -13,7 +13,7 @@ const HeaderBefore = () => {
       </div>
 
       <div className="nav-links">
-        <Link to="/flights" className="link">Flights</Link>
+        <Link to="/signIn" className="link">Flights</Link>
         <Link to="/signIn"><Button type="primary" className="signup-btn">Sign In</Button></Link>
         <Link to="/signUp"><Button type="primary" className="signup-btn">Sign up</Button></Link>
       </div>
