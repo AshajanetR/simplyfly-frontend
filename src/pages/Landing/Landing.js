@@ -24,9 +24,10 @@ const Landing = () => {
    <div >
        <HeaderBefore />
        <div className='landing-page'>
-        
+        <div className='boxed-center'>
         <h1 className='click-book-fly'>Click ,Book ,Fly.</h1>
         <FlightSearchBar />
+        </div>
        </div>
        <DCardApi />
        <Testimonials />

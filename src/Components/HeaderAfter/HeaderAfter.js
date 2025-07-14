@@ -2,10 +2,17 @@ import { Layout, Avatar } from 'antd';
 import './HeaderAfter.css';
 import LogoImg from '../../images/LogoImg.png';
 import ProfileImg from '../../images/ProfileImg.jpg';
+import { Link, useNavigate } from 'react-router-dom';
 
 const { Header } = Layout;
 
 const HeaderAfter = () => {
+  const navigate = useNavigate();
+
+  const goToProfile = () => {
+    navigate('/profileInfo'); // ✅ No state passed
+  };
+
   return (
     <Header className="app-header">
       <div className="logo">
@@ -13,9 +20,14 @@ const HeaderAfter = () => {
       </div>
 
       <div className="nav-links">
-        <a href="#" className="link">Flights</a>
-        <a href="#" className="link">My trips</a>
-        <Avatar src={ProfileImg} size="large" />
+        <Link to="/flights" className="link">Flights</Link>
+        <Link to="/myTrips" className="link">My Trips</Link>
+        <Avatar 
+          src={ProfileImg} 
+          size="large" 
+          onClick={goToProfile} 
+          style={{ cursor: 'pointer' }} 
+        />
       </div>
     </Header>
   );
