@@ -1,28 +1,28 @@
 import { FaPlaneDeparture, FaPlaneArrival, FaCalendarAlt, FaUser } from "react-icons/fa";
 import "./FlightSearchBar.css"
 import { Link } from "react-router-dom";
+import FromDropdown from "../FromDropdown/FromDropdown";
+import ToDropdown from "../ToDropdown/ToDropdown";
+import DateDropdown from "../DateDropdown/DateDropdown";
+import AdultDropdown from "../AdultDropdown/AdultDropdown";
 
 const FlightSearchBar = () => {
   return (
     <div className="search-bar">
       <div className="input-group">
-        <FaPlaneDeparture className="icon" />
-        <button className="input-btn">From where?</button>
+        <FromDropdown/>
       </div>
 
       <div className="input-group">
-        <FaPlaneArrival className="icon" />
-        <button className="input-btn">Where to?</button>
+        <ToDropdown/>
       </div>
 
       <div className="input-group">
-        <FaCalendarAlt className="icon" />
-        <button className="input-btn">Depart - Return</button>
+        <DateDropdown/>
       </div>
 
       <div className="input-group">
-        <FaUser className="icon" />
-        <button className="input-btn">1 adult</button>
+        <AdultDropdown/>
       </div>
 
       <Link to="/signIn"><button className="search-button">Search</button></Link>
