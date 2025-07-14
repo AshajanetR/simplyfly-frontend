@@ -19,7 +19,11 @@ const DateDropdown = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target) &&
+        !event.target.closest('.ant-picker-panel') // ✅ Allow clicks on calendar
+      ) {
         setOpen(false);
       }
     };
@@ -30,11 +34,11 @@ const DateDropdown = () => {
   const formatDate = (date) => (date ? dayjs(date).format('MMM D') : '');
 
   const formattedInputLabel = () => {
-    if (tripType === 'round' && selectedDates?.length === 2) {
-      return `${formatDate(selectedDates[0])} - ${formatDate(selectedDates[1])}`;
+    if (tripType === 'round') {
+      return `${formatDate(departDate) || 'Depart'} - ${formatDate(returnDate) || 'Return'}`;
     }
-    if (tripType === 'one' && selectedDates) {
-      return `${formatDate(selectedDates)}`;
+    if (tripType === 'one') {
+      return `${formatDate(oneWayDate) || 'Depart'}`;
     }
     return 'Depart - Return';
   };
@@ -81,7 +85,7 @@ const DateDropdown = () => {
                 setSelectedDates(null);
               }}
             >
-              <Radio value="round">Round trip</Radio>
+              
               <Radio value="one">One way</Radio>
             </Radio.Group>
 
