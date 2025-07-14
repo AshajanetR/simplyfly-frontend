@@ -2,12 +2,14 @@ import React from 'react';
 import { Select } from 'antd';
 import './FromDropdown.css';
 import planeIcon from '../../images/FromAirplane.png';
-
+import { useDispatch } from 'react-redux';
+import { setFrom } from '../../Store/flightSlice';
 const { Option } = Select;
 
-const airports = ['SFO', 'ATL', 'STL', 'PVG', 'JFK', 'Label', 'Label', 'Label'];
+const airports = ['Chennai', 'ATL', 'STL', 'PVG', 'JFK', 'Label', 'Label', 'Label'];
 
 const FromDropdown = () => {
+  const dispatch = useDispatch();
   const customPlaceholder = (
     <span className="custom-placeholder">
       <img src={planeIcon} alt="plane icon" className="plane-icon" />
@@ -25,6 +27,7 @@ const FromDropdown = () => {
         getPopupContainer={(triggerNode) => triggerNode.parentNode} 
         dropdownAlign={{ points: ['tl', 'bl'], offset: [50, 4] }} 
         allowClear={false}
+        onChange={(value) => dispatch(setFrom(value))}
       >
         {airports.map((code, index) => (
           <Option key={index} value={code}>

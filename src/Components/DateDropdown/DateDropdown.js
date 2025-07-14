@@ -3,10 +3,13 @@ import { DatePicker, Radio, Button } from 'antd';
 import './DateDropdown.css';
 import calendarIcon from '../../images/Calendar.png';
 import dayjs from 'dayjs';
+import { useDispatch } from 'react-redux';
+import { setDate } from '../../Store/flightSlice';
 
 const { RangePicker } = DatePicker;
 
 const DateDropdown = () => {
+  const dispatch = useDispatch();
   const [tripType, setTripType] = useState('round');
   const [departDate, setDepartDate] = useState(null);
   const [returnDate, setReturnDate] = useState(null);
@@ -19,7 +22,11 @@ const DateDropdown = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target) &&
+        !event.target.closest('.ant-picker-panel')
+      ) {
         setOpen(false);
       }
     };
@@ -30,11 +37,11 @@ const DateDropdown = () => {
   const formatDate = (date) => (date ? dayjs(date).format('MMM D') : '');
 
   const formattedInputLabel = () => {
-    if (tripType === 'round' && selectedDates?.length === 2) {
-      return `${formatDate(selectedDates[0])} - ${formatDate(selectedDates[1])}`;
+    if (tripType === 'round') {
+      return `${formatDate(departDate) || 'Depart'} - ${formatDate(returnDate) || 'Return'}`;
     }
-    if (tripType === 'one' && selectedDates) {
-      return `${formatDate(selectedDates)}`;
+    if (tripType === 'one') {
+      return `${formatDate(oneWayDate) || 'Depart'}`;
     }
     return 'Depart - Return';
   };
@@ -42,8 +49,10 @@ const DateDropdown = () => {
   const handleDone = () => {
     if (tripType === 'round') {
       setSelectedDates([departDate, returnDate]);
+      dispatch(setDate({ type: 'round', depart: departDate, return: returnDate })); // ✅ Redux update
     } else {
       setSelectedDates(oneWayDate);
+      dispatch(setDate({ type: 'one', depart: oneWayDate })); // ✅ Redux update
     }
     setOpen(false);
   };
@@ -81,8 +90,8 @@ const DateDropdown = () => {
                 setSelectedDates(null);
               }}
             >
-              <Radio value="round">Round trip</Radio>
               <Radio value="one">One way</Radio>
+              <Radio value="round">Round trip</Radio>
             </Radio.Group>
 
             <div className="input-preview">
