@@ -17,7 +17,6 @@ const App = () => {
     <div>
       {/* <Landing /> */}
       <Routing />
-      <Landing />
     </div>
   )
 }

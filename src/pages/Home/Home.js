@@ -3,6 +3,7 @@ import FlightSearchBar from '../../Components/FlightSearchBar/FlightSearchBar';
 import DCardApi from '../../Components/DealsCard/DCardApi';
 import Testimonials from '../../Components/Testimonials/Testimonials';
 import FooterApp from '../../Components/Footer/FooterApp';
+import CompDropdown from '../../Components/CompDropdown/CompDropdown'
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
         <div className='landing-page'>
         <div className='boxed-center'>
         <h1 className='click-book-fly'>Click ,Book ,Fly.</h1>
-        <FlightSearchBar />
+        <CompDropdown />
         </div>
        </div>
        <DCardApi />

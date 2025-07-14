@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
-const API_BASE_URL = "http://localhost:8085";
+const API_BASE_URL = "http://localhost:8086";
 
 const Profile = () => {
   const [form] = Form.useForm();
