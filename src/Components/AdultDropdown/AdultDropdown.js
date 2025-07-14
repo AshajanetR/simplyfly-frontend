@@ -3,12 +3,15 @@ import { Button } from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import './AdultDropdown.css';
 import personIcon from '../../images/Person.png'; 
+import { useDispatch } from 'react-redux';
+import { setAdults, setMinors } from '../../Store/flightSlice';
 
 const AdultDropdown = () => {
-  const [adults, setAdults] = useState(1);
-  const [minors, setMinors] = useState(0);
+  const [adults, setLocalAdults] = useState(1);
+  const [minors, setLocalMinors] = useState(0);
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const dispatch = useDispatch();
 
   const handleOutsideClick = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -20,6 +23,18 @@ const AdultDropdown = () => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
+
+  const handleAdultChange = (newCount) => {
+    const count = Math.max(1, newCount);  // Minimum 1 adult
+    setLocalAdults(count);
+    dispatch(setAdults(count));           // ✅ Update Redux state
+  };
+
+  const handleMinorChange = (newCount) => {
+    const count = Math.max(0, newCount);  // Minimum 0 minors
+    setLocalMinors(count);
+    dispatch(setMinors(count));           // ✅ Update Redux state
+  };
 
   const label = `${adults} Adult${adults > 1 ? 's' : ''}${minors > 0 ? `, ${minors} Minor${minors > 1 ? 's' : ''}` : ''}`;
 
@@ -37,14 +52,14 @@ const AdultDropdown = () => {
             <div className="control-buttons">
               <Button
                 icon={<MinusOutlined />}
-                onClick={() => setAdults(Math.max(1, adults - 1))}
+                onClick={() => handleAdultChange(adults - 1)} // ✅ Triggers Redux
                 size="small"
                 className="count-btn"
               />
               <span>{adults}</span>
               <Button
                 icon={<PlusOutlined />}
-                onClick={() => setAdults(adults + 1)}
+                onClick={() => handleAdultChange(adults + 1)} // ✅ Triggers Redux
                 size="small"
                 className="count-btn"
               />
@@ -55,14 +70,14 @@ const AdultDropdown = () => {
             <div className="control-buttons">
               <Button
                 icon={<MinusOutlined />}
-                onClick={() => setMinors(Math.max(0, minors - 1))}
+                onClick={() => handleMinorChange(minors - 1)} // ✅ Triggers Redux
                 size="small"
                 className="count-btn"
               />
               <span>{minors}</span>
               <Button
                 icon={<PlusOutlined />}
-                onClick={() => setMinors(minors + 1)}
+                onClick={() => handleMinorChange(minors + 1)} // ✅ Triggers Redux
                 size="small"
                 className="count-btn"
               />

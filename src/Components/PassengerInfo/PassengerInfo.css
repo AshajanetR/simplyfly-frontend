@@ -42,3 +42,9 @@
   margin-top: 4px;
   padding-left: 4px;
 }
+.buttons-passenger{
+    display: flex;
+    flex-direction: row;
+    gap: 75px;
+    margin-top: 20px;
+}
