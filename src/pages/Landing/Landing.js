@@ -16,6 +16,7 @@ import FlightSummaryCard from '../../Components/FlightSummaryCard/FlightSummaryC
 import PaymentDetail from '../../Components/PaymentDetail/PaymentDetail';
 import FlightCard from '../../Components/Flightcard/Flightcard';
 import FlightInfoCard from '../../Components/FlightInfoCard/FlightInfoCard';
+import FromDropdown from '../../Components/FromDropdown/FromDropdown';
 import './Landing.css'
 
 const Landing = () => {
@@ -32,6 +33,7 @@ const Landing = () => {
        <DCardApi />
        <Testimonials />
        <FooterApp />
+       
    </div>
   )
 }
