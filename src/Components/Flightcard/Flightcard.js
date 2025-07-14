@@ -1,6 +1,6 @@
 import "./FlightCard.css";
 import airlineLogo from "../../images/image25.png";
-const FlightCard = () => {
+const FlightCard = ({flight}) => {
   return (
     <div className="flight-card">
       <div className="flight-left">
@@ -10,17 +10,17 @@ const FlightCard = () => {
           className="airline-logo"
         />
         <div className="airline-details">
-          <div className="duration">16h 45m</div>
-          <div className="airline-name">Hawaiian Airlines</div>
+          <div className="duration">{flight.depertureT}</div>
+          <div className="airline-name">{flight.flightNumber}</div>
         </div>
       </div>
 
       <div className="flight-middle">
-        7:00AM - 4:15PM
+        {flight.source} - {flight.destination}
       </div>
 
       <div className="flight-right">
-        ₹ 45,399
+        ₹ {flight.fare}
       </div>
     </div>
   );

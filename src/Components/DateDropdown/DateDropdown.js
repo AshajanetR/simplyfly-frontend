@@ -3,10 +3,13 @@ import { DatePicker, Radio, Button } from 'antd';
 import './DateDropdown.css';
 import calendarIcon from '../../images/Calendar.png';
 import dayjs from 'dayjs';
+import { useDispatch } from 'react-redux';
+import { setDate } from '../../Store/flightSlice';
 
 const { RangePicker } = DatePicker;
 
 const DateDropdown = () => {
+  const dispatch = useDispatch();
   const [tripType, setTripType] = useState('round');
   const [departDate, setDepartDate] = useState(null);
   const [returnDate, setReturnDate] = useState(null);
@@ -22,7 +25,7 @@ const DateDropdown = () => {
       if (
         wrapperRef.current &&
         !wrapperRef.current.contains(event.target) &&
-        !event.target.closest('.ant-picker-panel') // ✅ Allow clicks on calendar
+        !event.target.closest('.ant-picker-panel')
       ) {
         setOpen(false);
       }
@@ -46,8 +49,10 @@ const DateDropdown = () => {
   const handleDone = () => {
     if (tripType === 'round') {
       setSelectedDates([departDate, returnDate]);
+      dispatch(setDate({ type: 'round', depart: departDate, return: returnDate })); // ✅ Redux update
     } else {
       setSelectedDates(oneWayDate);
+      dispatch(setDate({ type: 'one', depart: oneWayDate })); // ✅ Redux update
     }
     setOpen(false);
   };
@@ -85,8 +90,8 @@ const DateDropdown = () => {
                 setSelectedDates(null);
               }}
             >
-              
               <Radio value="one">One way</Radio>
+              <Radio value="round">Round trip</Radio>
             </Radio.Group>
 
             <div className="input-preview">
