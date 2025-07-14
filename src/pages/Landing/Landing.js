@@ -16,24 +16,35 @@ import FlightSummaryCard from '../../Components/FlightSummaryCard/FlightSummaryC
 import PaymentDetail from '../../Components/PaymentDetail/PaymentDetail';
 import FlightCard from '../../Components/Flightcard/Flightcard';
 import FlightInfoCard from '../../Components/FlightInfoCard/FlightInfoCard';
+import Ticket from '../../Components/Ticket/Ticket'
+import Tickets from '../Tickets/Tickets';
 import './Landing.css'
 
 const Landing = () => {
 
   return (
-   <div >
-       <HeaderBefore />
-       <div className='landing-page'>
-        <div className='boxed-center'>
-        <h1 className='click-book-fly'>Click ,Book ,Fly.</h1>
-        <FlightSearchBar />
-        {/* <CompDropdown/> */}
-        </div>
-       </div>
-       <DCardApi />
-       <Testimonials />
-       <FooterApp />
-   </div>
+
+    
+  //  <div >
+  //      <HeaderBefore />
+  //      <div className='landing-page'>
+  //       <div className='boxed-center'>
+  //       <h1 className='click-book-fly'>Click ,Book ,Fly.</h1>
+  //       <FlightSearchBar />
+  //       {/* <CompDropdown/> */}
+  //       </div>
+  //      </div>
+  //      <DCardApi />
+  //      <Testimonials />
+  //      <FooterApp />
+  //  </div>
+
+    <div>
+      <Tickets />
+      
+
+    </div>
+  
   )
 }
 
