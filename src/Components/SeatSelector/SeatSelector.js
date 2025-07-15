@@ -5,6 +5,7 @@ import "./SeatSelector.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addSeat, removeSeat } from "../../Store/seatSlice";
 
+// Generates all seat rows for the plane
 const generateSeats = () => {
   const rows = [];
   const seatLetters = ["A", "B", "C", "D", "E", "F"];
@@ -16,13 +17,16 @@ const generateSeats = () => {
   return rows;
 };
 
-const SeatSelector = () => {
+const SeatSelector = ({ allSeatNos = [] }) => {
   const { adults } = useSelector((state) => state.flight);
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const dispatch = useDispatch();
   const seatRows = generateSeats();
 
   const handleSelect = (seat) => {
+    // Prevent selecting booked seats
+    if (allSeatNos.includes(seat)) return;
+
     if (selectedSeats.includes(seat)) {
       dispatch(removeSeat(seat));
     } else {
@@ -40,14 +44,17 @@ const SeatSelector = () => {
         <div key={row} className={`seat-row ${isExitRow ? "exit-row" : ""}`}>
           <span className="row-number">{row}</span>
           {seats.map((seat, index) => {
-            const isGap = index === 2;
+            const isGap = index === 2; // Aisle gap
+            const isBooked = allSeatNos.includes(seat);
+
             return (
               <React.Fragment key={seat}>
                 {isGap && <div className="seat-gap" />}
                 <div
-                  className={`seat ${
-                    selectedSeats.includes(seat) ? "selected" : ""
-                  }`}
+                  className={`seat 
+                    ${selectedSeats.includes(seat) ? "selected" : ""} 
+                    ${isBooked ? "booked" : ""}
+                  `}
                   onClick={() => handleSelect(seat)}
                 >
                   {seat}

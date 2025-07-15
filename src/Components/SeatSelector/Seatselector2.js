@@ -5,6 +5,7 @@ import "./SeatSelector.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addSeat, removeSeat } from "../../Store/seatSlice";
 
+// Generate seat rows for rows 6 to 18
 const generateAltSeats = () => {
   const seatLetters = ["A", "B", "C", "D", "E", "F"];
   const rows = [];
@@ -15,13 +16,15 @@ const generateAltSeats = () => {
   return rows;
 };
 
-const Seatselector2 = () => {
+const SeatSelector2 = ({ allSeatNos = [] }) => {
   const { adults } = useSelector((state) => state.flight);
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const dispatch = useDispatch();
   const seatRows = generateAltSeats();
 
   const handleSelect = (seat) => {
+    if (allSeatNos.includes(seat)) return; // Prevent selecting booked seats
+
     if (selectedSeats.includes(seat)) {
       dispatch(removeSeat(seat));
     } else {
@@ -40,13 +43,15 @@ const Seatselector2 = () => {
           <span className="row-number">{row}</span>
           {seats.map((seat, index) => {
             const isGap = index === 2;
+            const isBooked = allSeatNos.includes(seat);
+
             return (
               <React.Fragment key={seat}>
                 {isGap && <div className="seat-gap" />}
                 <div
                   className={`seat ${
                     selectedSeats.includes(seat) ? "selected" : ""
-                  }`}
+                  } ${isBooked ? "booked" : ""}`}
                   onClick={() => handleSelect(seat)}
                 >
                   {seat}
@@ -60,4 +65,4 @@ const Seatselector2 = () => {
   );
 };
 
-export default Seatselector2;
+export default SeatSelector2;

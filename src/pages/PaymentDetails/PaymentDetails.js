@@ -66,6 +66,8 @@ const PaymentDetails = () => {
       });
 
       console.log("Booking successful:", res.data);
+      localStorage.setItem('bookingId',res.data.bookingId);
+
       alert("Booking successful!");
 
       // ✅ Navigate after booking succeeds

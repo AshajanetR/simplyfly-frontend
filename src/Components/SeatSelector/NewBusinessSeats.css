@@ -33,7 +33,7 @@
   transition: 0.2s;
 }
 
-.seat:hover {
+.seat1:hover {
   filter: brightness(1.1);
 }
 
@@ -43,4 +43,11 @@
 
 .seat1.selected {
   background-color: #f05454; /* red when selected */
+}
+
+/* ✅ Booked seat style for business class */
+.seat1.booked {
+  background-color: #3f3d3d;  /* gray */
+  cursor: not-allowed;
+  pointer-events: none;
 }

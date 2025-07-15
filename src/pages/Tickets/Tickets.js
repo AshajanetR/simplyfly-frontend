@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import HeaderAfter from '../../Components/HeaderAfter/HeaderAfter';
 import Ticket from '../../Components/Ticket/Ticket';
 import FlightSummaryCard from '../../Components/FlightSummaryCard/FlightSummaryCard';
 import './Tickets.css';
 import axios from 'axios';
+import { Button } from 'antd';
 
 const Tickets = () => {
   // const { bookingId } = useParams();
-  const bookingId = 8;
+  
+  const [bookid,setbookid] = useState(0);
   const [passengers, setPassengers] = useState([]);
   const [flightInfo, setFlightInfo] = useState(null);
 
@@ -17,6 +19,10 @@ const Tickets = () => {
     const getAmt = (fare) =>{
       setAmt(fare+121);
     }
+
+    useEffect(()=>{
+       setbookid(localStorage.getItem('bookingId'))
+    },[])
 
   useEffect(() => {
     const fetchTicketData = async () => {
@@ -30,7 +36,7 @@ const Tickets = () => {
 
         // Fetch booking details
         const bookingRes = await axios.get(
-          `http://localhost:8085/api/bookings/${bookingId}`,
+          `http://localhost:8085/api/bookings/${bookid}`,
           config
         );
         const booking = bookingRes.data;
@@ -65,8 +71,17 @@ const Tickets = () => {
     };
 
     fetchTicketData();
-  }, [bookingId]);
-
+  }, [bookid]);
+  const nav = useNavigate();
+  const handlebookagain =()=>{
+    nav('/home')
+    localStorage.removeItem('Flight');
+    localStorage.removeItem('flightSearch')
+    localStorage.removeItem('passengerInfo')
+    localStorage.removeItem('bookingId')
+    localStorage.removeItem('selectedSeats')
+    localStorage.removeItem('eTicketData')
+  }
   return (
     <div>
       <HeaderAfter />
@@ -82,6 +97,9 @@ const Tickets = () => {
           ))}
         </div>
         <FlightSummaryCard getAmt={getAmt} flight={flightInfo} />
+      </div>
+      <div classname="buttons-pay">
+      <Button onClick={handlebookagain}>Book Again</Button>
       </div>
     </div>
   );
