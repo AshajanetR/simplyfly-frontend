@@ -1,7 +1,27 @@
 import "./FlightCard.css";
 import airlineLogo from "../../images/image25.png";
-const FlightCard = ({flight}) => {
+const FlightCard = ({flight : propFlight}) => {
+  
+
+  const flight =
+    propFlight ||
+    (() => {
+      const stored = localStorage.getItem("flightSearch");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        return parsed.response?.[0]; // Or use a more specific flight
+      }
+      return null;
+    })();
+
+  if (!flight) {
+    return <p style={{ color: 'red' }}>Flight data not available</p>;
+  }
+
+
+
   return (
+
     <div className="flight-card">
       <div className="flight-left">
         <img

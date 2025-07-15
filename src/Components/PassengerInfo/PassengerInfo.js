@@ -1,18 +1,27 @@
 import React from 'react';
-import { Form, Input, Select } from 'antd';
+import { Form, Input, InputNumber, Select, Button } from 'antd';
 import './PassengerInfo.css';
-import Button from '../Button/ButtonComp';
-import { Link } from 'react-router-dom';
+// import Button from '../Button/ButtonComp';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setPassengers } from '../../Store/passengerSlice';
 
 const { Option } = Select;
 
-const PassengerInfo = ({ adultCount = 1 }) => {
+const PassengerInfo = ({ adultCount  }) => {
   const [form] = Form.useForm();
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   const onFinish = (values) => {
+    alert("Passenger added")
     console.log('All Passenger Details:', values);
-    // Save to localStorage or Redux if needed
+    localStorage.setItem('passengerInfo', JSON.stringify(values.passengers));
+    dispatch(setPassengers(values.passengers));
+    navigate('/seats')
   };
+
+  
 
   return (
     <Form
@@ -49,7 +58,7 @@ const PassengerInfo = ({ adultCount = 1 }) => {
               { type: 'number', min: 2, message: 'Minimum age is 2' }
             ]}
           >
-            <Input type="number" placeholder="Age*" />
+            <InputNumber placeholder="Age*" />
           </Form.Item>
 
           <Form.Item
@@ -66,15 +75,16 @@ const PassengerInfo = ({ adultCount = 1 }) => {
         </div>
       ))}
 
+      <Button type="primary" htmlType="submit">Add</Button>
       {/* ✅ Buttons moved here */}
-      <div className="buttons-passenger" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 20 }}>
+      {/* <div className="buttons-passenger" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 20 }}>
         <Link to="/flights">
           <Button>Back to Flights</Button>
         </Link>
-        <Link to="/seats">
-          <Button>Continue to Seats</Button>
-        </Link>
-      </div>
+        
+          <Button block type="primary" htmlType="submit">Continue to Seats</Button>
+        
+      </div> */}
     </Form>
   );
 };

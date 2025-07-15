@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SeatSelector.css";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSeats } from "../../Store/seatSlice";
 
 const generateSeats = () => {
   const rows = [];
@@ -21,12 +23,32 @@ const generateSeats = () => {
   return rows;
 };
 
+
+
 const SeatSelector = () => {
-  const [selectedSeat, setSelectedSeat] = useState(null);
+  const {adults} = useSelector((state)=>state.flight)
+  const [selectedSeats, setSelectedSeats] = useState([]);
   const seatRows = generateSeats();
+  const dispatch = useDispatch()
+  const data = useSelector((state)=>state.seat.selectedSeats)
+  console.log("Seats",data)
+  
+  useEffect(() => {
+  localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
+  dispatch(selectSeats(selectedSeats))
+}, [selectedSeats]);
 
   const handleSelect = (seat) => {
-    setSelectedSeat(seat);
+    if (selectedSeats.includes(seat)) {
+      // Deselect if already selected
+      setSelectedSeats(selectedSeats.filter((s) => s !== seat));
+    } else {
+      if (selectedSeats.length < adults) {
+        setSelectedSeats([...selectedSeats, seat]);
+      } else {
+        alert(`You can only select ${adults} seat(s).`);
+      }
+    }
   };
 
   return (
@@ -35,17 +57,29 @@ const SeatSelector = () => {
         <div key={row} className={`seat-row ${isExitRow ? "exit-row" : ""}`}>
           <span className="row-number">{row}</span>
 
-          {seats.map((seat, index) => (
-            <div
-              key={seat}
-              className={`seat ${selectedSeat === seat ? "selected" : ""}`}
-              onClick={() => handleSelect(seat)}
-            >
-              {seat}
-            </div>
-          ))}
+          {seats.map((seat, index) => {
+            const isGap = index === 2; // A B —gap— C D E F
+            return (
+              <React.Fragment key={seat}>
+                {isGap && <div className="seat-gap" />}
+                <div
+                  className={`seat ${
+                    selectedSeats.includes(seat) ? "selected" : ""
+                  }`}
+                  onClick={() => handleSelect(seat)}
+                >
+                  {seat}
+                </div>
+              </React.Fragment>
+            );
+          })}
         </div>
       ))}
+
+      {/* Optional: Show selected seats */}
+      <div className="selected-info">
+        <strong>Selected Seats:</strong> {selectedSeats.join(", ") || "None"}
+      </div>
     </div>
   );
 };

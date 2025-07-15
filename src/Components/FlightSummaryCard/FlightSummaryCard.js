@@ -1,21 +1,63 @@
-import React from 'react';
-import { Card, Typography, Row, Col, Divider, Space, Image } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Card, Typography, Row, Col, Divider, Space } from 'antd';
 import './FlightSummaryCard.css';
+import { useLocation } from 'react-router-dom';
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 const FlightSummaryCard = () => {
+  const location = useLocation();
+  const [flight, setFlight] = useState(null);
+  const [adults, setAdults] = useState(1); // default
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+  const flightData = location.state;
+
+  if (flightData?.flight) {
+    setFlight(flightData.flight);
+    setAdults(flightData.adults || 1);
+  } else {
+    const stored = localStorage.getItem("flightSearch");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      const result = parsed.response?.[0];
+      const adultCount = parsed.request?.adults || 1;
+
+      setFlight(result);
+      setAdults(adultCount);
+    }
+  }
+}, []); // ✅ FIXED: Empty dependency array
+
+
+  useEffect(() => {
+    if (flight?.flightNumber?.includes('AI')) {
+      setName('Air India');
+    } else if (flight?.flightNumber?.includes('ID')) {
+      setName('Indigo Airlines');
+    } else if (flight?.flightNumber) {
+      setName('Unknown Airline');
+    }
+  }, [flight]);
+
+  if (!flight) {
+    return <p style={{ color: 'red' }}>Flight information not available.</p>;
+  }
+
+  const number = flight.flightNumber;
+  const fare = flight.fare * adults;
+
   return (
     <Card className="flight-card2" bordered>
-      <div>
-        <Row justify="space-between" align="middle">
+      <Row justify="space-between" align="middle">
         <Col>
           <Space align="start">
-             <div className="emoji-logo">🛫</div>
+            <div className="emoji-logo">🛫</div>
             <div>
-              <Text strong>Hawaiian Airlines</Text>
+              <Text strong>{name}</Text>
               <br />
-              <Text type="secondary" className="flight-code">FIG4312</Text>
+              <Text type="secondary" className="flight-code">{number}</Text>
             </div>
           </Space>
         </Col>
@@ -28,7 +70,6 @@ const FlightSummaryCard = () => {
           <Text type="secondary" className="layover">2h 45m in HNL</Text>
         </Col>
       </Row>
-      </div>
 
       <Divider />
 
@@ -36,15 +77,15 @@ const FlightSummaryCard = () => {
         <Col span={12}>
           <Row justify="space-between">
             <Text>Subtotal</Text>
-            <Text strong>$503</Text>
+            <Text strong>₹{fare}</Text>
           </Row>
           <Row justify="space-between">
             <Text>Taxes and Fees</Text>
-            <Text strong>$121</Text>
+            <Text strong>₹121</Text>
           </Row>
           <Row justify="space-between">
             <Text strong>Total</Text>
-            <Text strong>$624</Text>
+            <Text strong>₹{fare + 121}</Text>
           </Row>
         </Col>
       </Row>
