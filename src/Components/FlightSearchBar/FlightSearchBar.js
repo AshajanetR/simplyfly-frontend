@@ -15,6 +15,7 @@ const FlightSearchBar = ({ onSearchComplete }) => {
 
   const handleSearch = async () => {
     const token = localStorage.getItem("token");
+    console.log(date)
 
     const formattedDeparture = date?.depart
       ? dayjs(date.depart).format("YYYY-MM-DDTHH:mm:ss")

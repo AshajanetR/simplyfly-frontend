@@ -4,7 +4,8 @@ import './BookingConfirmation.css';
 
 const { Title, Text } = Typography;
 
-const BookingConfirmation = () => {
+const BookingConfirmation = ({transactionId}) => {
+  console.log("transactionId ",transactionId)
   return (
     <div className="booking-confirmation">
       <Title level={4} style={{ color: '#5a67d8',fontSize:30, marginBottom: 20 }}>
@@ -13,7 +14,7 @@ const BookingConfirmation = () => {
 
 
       <Text className="confirmation-number">
-        Confirmation number: <strong>#381029404387</strong>
+        Confirmation number: <strong>#{transactionId}</strong>
       </Text>
 
       <Text className="thank-you-text">
