@@ -13,31 +13,38 @@ const SignIn = () => {
   const nav = useNavigate();
 
   const onFinish = async (values) => {
-    try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
-        userEmail: values.email,
-        userPassword: values.password,
-      });
+  try {
+    const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+      userEmail: values.email,
+      userPassword: values.password,
+    });
 
-      const token = response.data;
+    const token = response.data;
 
-      // Save token in localStorage
-      localStorage.setItem('token', token);
+    // Save token in localStorage
+    localStorage.setItem('token', token);
 
-      // Decode token to extract user
-      const decodedPayload = JSON.parse(atob(token.split('.')[1]));
+    // Decode token to extract user info
+    const decodedPayload = JSON.parse(atob(token.split('.')[1]));
 
-      // Store user in Redux
-      dispatch(setUser(decodedPayload));
+    // Store user in Redux
+    dispatch(setUser(decodedPayload));
 
-      console.log('Login successful:', decodedPayload);
-      alert('Login successful!');
-      nav('/Home');
-    } catch (error) {
-      console.error('Login failed:', error);
-      alert('Invalid email or password!');
+    console.log('Login successful:', decodedPayload);
+    alert('Login successful!');
+
+    // Navigate based on role
+    if (decodedPayload.userType === 'OWNER') {
+      nav('/ownerHome');
+    } else {
+      nav('/Home'); // Default for USER, ADMIN, etc.
     }
-  };
+  } catch (error) {
+    console.error('Login failed:', error);
+    alert('Invalid email or password!');
+  }
+};
+
 
   return (
     <Modal open={true} footer={null}>

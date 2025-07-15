@@ -1,0 +1,35 @@
+.view-flight-container {
+  padding: 20px;
+}
+
+.flight-info {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.seats-layout {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 35px;
+}
+
+
+.view-bookings-btn {
+  padding: 12px 30px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.view-bookings-btn:hover {
+  background-color: #005fa3;
+}
+
