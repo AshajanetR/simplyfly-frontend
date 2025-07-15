@@ -1,0 +1,157 @@
+.ticket-page {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.ticket-row-layout {
+  display: flex;
+  align-items: flex-end; 
+  gap: 2rem;
+}
+
+.ticket-wrapper {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.ticket {
+  display: flex;
+  width: 770px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  background: linear-gradient(135deg, #f2fbff, #e9f7ff);
+}
+
+.ticket:hover {
+  transform: scale(1.02);
+}
+
+.ticket-left {
+  flex: 3;
+  padding: 1.5rem;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 2px dashed #ddd;
+}
+
+.ticket-header {
+  background: linear-gradient(90deg, #007cf0, #00dfd8);
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 140, 255, 0.2);
+}
+
+.ticket-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.airline {
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  font-weight: bold;
+}
+
+.ticket-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.ticket-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.ticket-row span {
+  color: #666;
+}
+
+.ticket-row strong {
+  color: #222;
+}
+
+.ticket-footer {
+  text-align: center;
+  margin-top: 1rem;
+  color: #007cf0;
+  font-size: 0.95rem;
+}
+
+.ticket-divider {
+  width: 1rem;
+  background-image: radial-gradient(#bbb 1.5px, transparent 1.5px);
+  background-size: 6px 6px;
+  background-repeat: repeat-y;
+  background-position: center;
+}
+
+.ticket-right {
+  flex: 1.5;
+  background-color: #f0f9ff;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ticket-right .small .ticket-row {
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+  border: none;
+}
+
+.barcode {
+  height: 60px;
+  background: repeating-linear-gradient(
+    90deg,
+    #222,
+    #222 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  margin-top: 2rem;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.ticket-button-side {
+  align-self: flex-end;
+  padding-bottom: 1rem;
+}
+
+.btn {
+  width: 150px;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn.filled {
+  background-color: #edf2f7;
+  color: #333;
+  border: 1px solid #cbd5e0;
+}
+
+.btn.filled:hover {
+  background-color: #e2e8f0;
+}
+
+
+@media print {
+  .ticket-button-side {
+    display: none;
+  }
+}
