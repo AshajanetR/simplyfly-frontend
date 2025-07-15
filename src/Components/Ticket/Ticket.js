@@ -13,11 +13,20 @@ const Ticket = ({ index }) => {
     }
   }, [index]);
 
+  const sanitizeFilename = (name) => {
+    return name.replace(/[^a-zA-Z0-9-_]/g, '_');
+  };
+
   const downloadPDF = () => {
     const element = ticketRef.current;
+
+    const fileName = sanitizeFilename(
+      `${ticket.passengerName}-${ticket.airline}-${ticket.seatNumber}`
+    );
+
     const opt = {
       margin: 0,
-      filename: `${ticket.passengerName}-${ticket.airline}-${ticket.seatNumber}.pdf`,
+      filename: `${fileName}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2 },
       jsPDF: {
@@ -26,6 +35,7 @@ const Ticket = ({ index }) => {
         orientation: 'landscape',
       },
     };
+
     html2pdf().set(opt).from(element).save();
   };
 
@@ -43,18 +53,44 @@ const Ticket = ({ index }) => {
               </div>
 
               <div className="ticket-body">
-                <div className="ticket-row"><span>Passenger</span><strong>{ticket.passengerName}</strong></div>
-                <div className="ticket-row"><span>Flight</span><strong>{ticket.flightNumber}</strong></div>
-                <div className="ticket-row"><span>Departure</span><strong>{ticket.departureTime}</strong></div>
-                <div className="ticket-row"><span>Arrival</span><strong>{ticket.arrivalTime}</strong></div>
-                <div className="ticket-row"><span>From</span><strong>{ticket.from}</strong></div>
-                <div className="ticket-row"><span>To</span><strong>{ticket.destination}</strong></div>
-                <div className="ticket-row"><span>Seat</span><strong>{ticket.seatNumber}</strong></div>
-                <div className="ticket-row"><span>Date</span><strong>{ticket.flightDate}</strong></div>
+                <div className="ticket-row">
+                  <span>Passenger</span>
+                  <strong>{ticket.passengerName}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>Flight</span>
+                  <strong>{ticket.flightNumber}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>Departure</span>
+                  <strong>{ticket.departureTime}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>Arrival</span>
+                  <strong>{ticket.arrivalTime}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>From</span>
+                  <strong>{ticket.from}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>To</span>
+                  <strong>{ticket.destination}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>Seat</span>
+                  <strong>{ticket.seatNumber}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>Date</span>
+                  <strong>{ticket.flightDate}</strong>
+                </div>
               </div>
 
               <div className="ticket-footer">
-                <p>Enjoy your flight with <strong>{ticket.airline}</strong> ✈️</p>
+                <p>
+                  Enjoy your flight with <strong>{ticket.airline}</strong> ✈
+                </p>
               </div>
             </div>
 
@@ -62,10 +98,22 @@ const Ticket = ({ index }) => {
 
             <div className="ticket-right">
               <div className="ticket-body small">
-                <div className="ticket-row"><span>Flight</span><strong>{ticket.flightNumber}</strong></div>
-                <div className="ticket-row"><span>From</span><strong>{ticket.from}</strong></div>
-                <div className="ticket-row"><span>To</span><strong>{ticket.destination}</strong></div>
-                <div className="ticket-row"><span>Date</span><strong>{ticket.flightDate}</strong></div>
+                <div className="ticket-row">
+                  <span>Flight</span>
+                  <strong>{ticket.flightNumber}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>From</span>
+                  <strong>{ticket.from}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>To</span>
+                  <strong>{ticket.destination}</strong>
+                </div>
+                <div className="ticket-row">
+                  <span>Date</span>
+                  <strong>{ticket.flightDate}</strong>
+                </div>
               </div>
               <div className="barcode"></div>
             </div>
@@ -73,7 +121,9 @@ const Ticket = ({ index }) => {
         </div>
 
         <div className="ticket-button-side">
-          <button className="btn filled" onClick={downloadPDF}>Download as PDF</button>
+          <button className="btn filled" onClick={downloadPDF}>
+            Download as PDF
+          </button>
         </div>
       </div>
     </div>

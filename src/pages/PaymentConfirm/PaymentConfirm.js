@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FlightSummaryCard from '../../Components/FlightSummaryCard/FlightSummaryCard';
 import FlightCard from '../../Components/Flightcard/Flightcard'
 import BookingAlert from '../../Components/BookingAlert/BookingAlert';
 import BookingConfirmation from '../../Components/BookingConfirmation/BookingConfirmation';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Button from '../../Components/Button/ButtonComp';
 import './PaymentConfirm.css'
 
 const PaymentConfirm = () => {
+  const [amt, setAmt] = useState(0);
+  const location = useLocation();
+ const transactionId = location.state?.transId;
+  
+    const getAmt = (fare) => {
+      setAmt(fare + 121); // Add tax
+    };
+    console.log(transactionId)
   return (
     <div>
-        <BookingAlert />
+        <BookingAlert transactionId = {transactionId}/>
         <div className='book-flight'>
-          <BookingConfirmation />
-          <FlightSummaryCard />
+          <BookingConfirmation transactionId = {transactionId}/>
+          <FlightSummaryCard getAmt={getAmt}/>
         </div>
         <FlightCard />
         

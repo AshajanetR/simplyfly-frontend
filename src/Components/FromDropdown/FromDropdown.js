@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { setFrom } from '../../Store/flightSlice';
 const { Option } = Select;
 
-const airports = ['Chennai', 'Pune', 'Mumbai', 'Delhi', 'JFK', 'Label', 'Label', 'Label'];
+const airports = ['Pune','Chennai', 'ATL', 'STL', 'PVG', 'JFK', 'Label', 'Label', 'Label'];
 
 const FromDropdown = () => {
   const dispatch = useDispatch();

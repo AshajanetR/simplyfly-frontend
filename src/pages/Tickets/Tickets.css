@@ -34,3 +34,11 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+.buttons-pay{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 70px;
+    
+}
