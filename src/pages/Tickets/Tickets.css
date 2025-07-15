@@ -16,7 +16,6 @@
   margin: 0;
 }
 
-/* Ticket and Summary side by side */
 .ticket-summary-container {
   display: flex;
   justify-content: space-between;
@@ -26,7 +25,6 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Optional: Adjust widths as needed */
 .ticket-summary-container > * {
   flex: 1;
 }

@@ -21,7 +21,7 @@ const Tickets = () => {
           },
         };
 
-        // ✅ Step 1: Get Booking + Passengers
+        
         const bookingRes = await axios.get(
           `http://localhost:8086/api/bookings/${bookingId}`,
           config
@@ -29,16 +29,18 @@ const Tickets = () => {
         const booking = bookingRes.data;
         const flightId = booking.flightId;
 
-        // ✅ Step 2: Get Flight
+        
         const flightRes = await axios.get(
           `http://localhost:8086/api/flights/${flightId}`,
           config
         );
         const flight = flightRes.data;
 
-        // ✅ Step 3: Merge Passenger + Flight Info
+        console.log(flight);
+
+        
         const formattedData = booking.passengers.map(p => ({
-          airline: "Air India", // Or use `flight.airline` if available
+          airline: flight.airlineName, 
           passengerName: p.passengerName,
           flightDate: booking.bookingDate,
           departureTime: new Date(flight.depertureT).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -53,7 +55,7 @@ const Tickets = () => {
         setPassengers(formattedData);
         setFlightInfo(flight);
       } catch (error) {
-        console.error("❌ Error fetching ticket data:", error.response || error.message);
+        console.error("Error fetching ticket data:", error.response || error.message);
       }
     };
 

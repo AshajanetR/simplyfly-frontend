@@ -149,7 +149,7 @@
   background-color: #e2e8f0;
 }
 
-/* Hide button in print */
+
 @media print {
   .ticket-button-side {
     display: none;
