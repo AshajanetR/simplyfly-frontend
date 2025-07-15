@@ -3,14 +3,20 @@ import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 
 const FlightInfoCard = () => {
-  const { from, to, date } = useSelector((state) => state.flight);
+  const { from, to, date,adults } = useSelector((state) => state.flight);
 
-  const departureTime = date?.depart
-    ? dayjs(date.depart).format("MMM D | h:mm A")
-    : "Not Available";
+  const dates = {
+  depart: date,
+};
+
+const departureTime = dates?.depart
+  ? dayjs(dates.depart).format("MMM D | h:mm A")
+  : "Not Available";
+
+console.log(departureTime);
 
   const arrivalTime = "Jul 15 | 10:30 AM"; // 🔁 Replace with real data if you store it
-
+  console.log("From to date adults",from,to,date,adults)
   return (
     <div className="flight-card1">
       <div className="card-section from-to">

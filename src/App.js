@@ -3,7 +3,7 @@ import Routing from "./Routes/Routing"
 import { getUserFromToken } from './util/decodeToken';
 import { useEffect } from "react";
 import { setUser } from "./Store/authSlice";
-import { setAdults } from "./Store/flightSlice";
+import { setAdults, setDate, setFrom, setTo } from "./Store/flightSlice";
 const App = () => {
   const dispatch = useDispatch();
 
@@ -19,6 +19,15 @@ const App = () => {
       const parsedFlight = JSON.parse(flight); // ✅ parse the JSON string
       if (parsedFlight?.request?.adults !== undefined) {
         dispatch(setAdults(parsedFlight.request.adults)); // ✅ safely access adults
+      }
+      if (parsedFlight?.request?.source !== undefined) {
+        dispatch(setFrom(parsedFlight.request.source)); // ✅ safely access adults
+      }
+      if (parsedFlight?.request?.destination !== undefined) {
+        dispatch(setTo(parsedFlight.request.destination)); // ✅ safely access adults
+      }
+      if (parsedFlight?.request?.depertureT !== undefined) {
+        dispatch(setDate(parsedFlight.request.depertureT)); // ✅ safely access adults
       }
     } catch (error) {
       console.error("Error parsing flightSearch from localStorage:", error);

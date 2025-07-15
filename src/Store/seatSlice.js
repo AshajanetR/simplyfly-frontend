@@ -1,22 +1,30 @@
-import { createSlice } from "@reduxjs/toolkit";
+// Store/seatSlice.js
+
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    selectedSeats: [],      // Stores selected seat numbers
-  allowedSeats: 0
-}
+  selectedSeats: [],
+};
 
 const seatSlice = createSlice({
-    name : 'seat',
-    initialState,
-    reducers : {
-        setAllowedSeats: (state, action) => {
-      state.allowedSeats = action.payload;
+  name: 'seat',
+  initialState,
+  reducers: {
+    addSeat: (state, action) => {
+      const seat = action.payload;
+      if (!state.selectedSeats.includes(seat)) {
+        state.selectedSeats.push(seat);
+      }
     },
-    selectSeats: (state, action) => {
-  state.selectedSeats = action.payload; // ✅ overwrite with full array
-}
-    }
+    removeSeat: (state, action) => {
+      const seat = action.payload;
+      state.selectedSeats = state.selectedSeats.filter((s) => s !== seat);
+    },
+    resetSeats: (state) => {
+      state.selectedSeats = [];
+    },
+  },
 });
 
-export const {setAllowedSeats,selectSeats} = seatSlice.actions;
+export const { addSeat, removeSeat, resetSeats } = seatSlice.actions;
 export default seatSlice.reducer;

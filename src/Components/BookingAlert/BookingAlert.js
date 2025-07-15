@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert } from 'antd';
 import './BookingAlert.css';
 
-const BookingAlert = () => {
+const BookingAlert = ({transactionId}) => {
   const [visible, setVisible] = useState(true);
 
   return (
@@ -11,7 +11,7 @@ const BookingAlert = () => {
         message={
           <>
             Your flight has been booked successfully! Your confirmation number is{' '}
-            <strong>#381029404387</strong>
+            <strong>#{transactionId}</strong>
           </>
         }
         type="success"

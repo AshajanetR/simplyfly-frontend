@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 
 const { Text } = Typography;
 
-const FlightSummaryCard = () => {
+const FlightSummaryCard = ({getAmt}) => {
   const location = useLocation();
   const [flight, setFlight] = useState(null);
   const [adults, setAdults] = useState(1); // default
@@ -47,6 +47,7 @@ const FlightSummaryCard = () => {
 
   const number = flight.flightNumber;
   const fare = flight.fare * adults;
+  getAmt(fare)
 
   return (
     <Card className="flight-card2" bordered>
