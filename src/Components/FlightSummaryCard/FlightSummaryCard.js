@@ -47,6 +47,7 @@ const FlightSummaryCard = ({getAmt}) => {
 
   const number = flight.flightNumber;
   const fare = flight.fare * adults;
+  const fname = flight.airlineName;
   getAmt(fare)
 
   return (
@@ -56,7 +57,7 @@ const FlightSummaryCard = ({getAmt}) => {
           <Space align="start">
             <div className="emoji-logo">🛫</div>
             <div>
-              <Text strong>{name}</Text>
+              <Text strong>{fname}</Text>
               <br />
               <Text type="secondary" className="flight-code">{number}</Text>
             </div>

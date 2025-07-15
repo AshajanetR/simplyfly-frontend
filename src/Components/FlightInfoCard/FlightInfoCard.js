@@ -10,12 +10,11 @@ const FlightInfoCard = () => {
 };
 
 const departureTime = dates?.depart
-  ? dayjs(dates.depart).format("MMM D | h:mm A")
+  ? dayjs(new Date(dates.depart)).format("MMM D | h:mm A")
   : "Not Available";
+console.log("departureTime ",departureTime);
 
-console.log(departureTime);
-
-  const arrivalTime = "Jul 15 | 10:30 AM"; // 🔁 Replace with real data if you store it
+  const arrivalTime = "Nov 15 | 10:30 AM"; // 🔁 Replace with real data if you store it
   console.log("From to date adults",from,to,date,adults)
   return (
     <div className="flight-card1">

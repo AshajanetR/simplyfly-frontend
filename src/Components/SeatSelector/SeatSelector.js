@@ -17,15 +17,18 @@ const generateSeats = () => {
   return rows;
 };
 
-const SeatSelector = ({ allSeatNos = [] }) => {
+const SeatSelector = ({ bookedSeatNos = [], canceledSeatNos = [] }) => {
   const { adults } = useSelector((state) => state.flight);
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const dispatch = useDispatch();
   const seatRows = generateSeats();
 
   const handleSelect = (seat) => {
-    // Prevent selecting booked seats
-    if (allSeatNos.includes(seat)) return;
+    const isBooked = bookedSeatNos.includes(seat);
+    const isCanceled = canceledSeatNos.includes(seat);
+    const isDisabled = isBooked && !isCanceled;
+
+    if (isDisabled) return;
 
     if (selectedSeats.includes(seat)) {
       dispatch(removeSeat(seat));
@@ -44,8 +47,10 @@ const SeatSelector = ({ allSeatNos = [] }) => {
         <div key={row} className={`seat-row ${isExitRow ? "exit-row" : ""}`}>
           <span className="row-number">{row}</span>
           {seats.map((seat, index) => {
-            const isGap = index === 2; // Aisle gap
-            const isBooked = allSeatNos.includes(seat);
+            const isGap = index === 2;
+            const isBooked = bookedSeatNos.includes(seat);
+            const isCanceled = canceledSeatNos.includes(seat);
+            const isDisabled = isBooked && !isCanceled;
 
             return (
               <React.Fragment key={seat}>
@@ -53,8 +58,7 @@ const SeatSelector = ({ allSeatNos = [] }) => {
                 <div
                   className={`seat 
                     ${selectedSeats.includes(seat) ? "selected" : ""} 
-                    ${isBooked ? "booked" : ""}
-                  `}
+                    ${isDisabled ? "booked" : ""}`}
                   onClick={() => handleSelect(seat)}
                 >
                   {seat}
@@ -67,5 +71,6 @@ const SeatSelector = ({ allSeatNos = [] }) => {
     </div>
   );
 };
+
 
 export default SeatSelector;
