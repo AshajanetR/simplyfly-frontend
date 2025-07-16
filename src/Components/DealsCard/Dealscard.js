@@ -9,7 +9,7 @@ const Dealscard = ({ image, landmark, city, price, airline }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/flights?source=Chennai&destination=${encodeURIComponent(city)}`);
+    navigate(`/flights?source=Mumbai&destination=${encodeURIComponent(city)}`);
   };
 
   return (

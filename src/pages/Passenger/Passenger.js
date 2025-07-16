@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 const Passenger = () => {
   const { state } = useLocation(); // contains flight & adult
   const { flight, adults } = state || {};
+  console.log(adults);
   useEffect(()=>{
     localStorage.setItem("Flight",JSON.stringify(flight))
   },[])

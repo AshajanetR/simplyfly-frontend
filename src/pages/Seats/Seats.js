@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import FlightInfoCard from '../../Components/FlightInfoCard/FlightInfoCard';
@@ -14,7 +14,12 @@ import { API_BASE_URL } from '../../apiConfig';
 import './Seats.css';
 import axios from 'axios';
 
+// ✅ Import the correct reset action
+import { resetSeats } from '../../Store/seatSlice';
+
 const Seats = () => {
+  const dispatch = useDispatch();
+
   const passengerRedux = useSelector((state) => state.passenger?.passengers || []);
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const count = useSelector((state) => state.flight.adults);
@@ -31,8 +36,8 @@ const Seats = () => {
     .filter((booking) => booking.bookingStatus === 'CANCELLED')
     .flatMap((booking) => booking.passengers.map((p) => p.seatNo));
 
-    console.log("Canceled seats ",canceledSeatNos)
-    console.log("Booked Seats ", bookedSeatNos)
+  console.log("Canceled seats ", canceledSeatNos);
+  console.log("Booked Seats ", bookedSeatNos);
 
   const seatData = () => {
     if (passengerRedux.length > 0) {
@@ -42,13 +47,6 @@ const Seats = () => {
       setPassengers(stored);
     }
   };
-
-  useEffect(() => {
-    if (passengers.length === 0) {
-      seatData();
-    }
-    fetchSeatNos();
-  }, []);
 
   const flightId = JSON.parse(localStorage.getItem('Flight'));
   const token = localStorage.getItem('token');
@@ -65,6 +63,14 @@ const Seats = () => {
       console.log(error);
     }
   };
+
+  // ✅ Clear selected seats from Redux and localStorage on mount
+  useEffect(() => {
+    dispatch(resetSeats());
+    localStorage.removeItem('selectedSeats');
+    seatData();
+    fetchSeatNos();
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
