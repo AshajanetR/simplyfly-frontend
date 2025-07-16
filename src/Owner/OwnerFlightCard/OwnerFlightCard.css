@@ -1,0 +1,102 @@
+.owner-flight-card {
+  background-color: #f9f9ff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.owner-flight-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.flight-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.airline-logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 12px;
+}
+
+.flight-number {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.route {
+  font-size: 14px;
+  color: #777;
+}
+
+.fare {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a47ff;
+}
+
+.flight-card-times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.action-buttons {
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.update-btn,
+.delete-btn,
+.view-btn {
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-btn {
+  background-color: #605dec;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #4a45cc;
+}
+
+.delete-btn {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d9363e;
+}
+
+.view-btn {
+  background-color: #66c3a4;
+  color: #fff;
+}
+
+.view-btn:hover {
+  background-color: #50b495;
+}

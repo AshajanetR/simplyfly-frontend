@@ -1,0 +1,54 @@
+.flight-dropdown-wrapper {
+  width: 250px;
+  position: relative;
+}
+
+.flight-dropdown {
+  width: 100%;
+  font-size: 16px;
+}
+
+.flight-dropdown .ant-select-selector {
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  height: 40px;
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+}
+
+.flight-dropdown:hover .ant-select-selector {
+  border-color: #5a67d8;
+  box-shadow: 0 0 0 2px rgba(90, 103, 216, 0.2);
+}
+
+.flight-dropdown.ant-select-focused .ant-select-selector {
+  border: 2px solid #5a67d8 !important;
+  box-shadow: 0 0 0 2px rgba(90, 103, 216, 0.2);
+}
+
+.custom-placeholder {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.5);
+  gap: 8px;
+}
+
+.plane-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.custom-dropdown {
+  width: 200px !important;
+}
+
+.custom-dropdown .ant-select-item-option:hover {
+  background-color: #5a67d8;
+  color: #ffffff;
+}

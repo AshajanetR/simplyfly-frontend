@@ -1,28 +1,39 @@
-import './DealsCard.css'
+import './DealsCard.css';
 import React from 'react';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Card } from 'antd';
+import { Card } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
 const { Meta } = Card;
 
-const Dealscard = ({image,landmark,city,price,airline}) => (
-  <Card
-  style={{ width: 300 }}
-    cover={
-      <img
-        alt="example"
-        src={image}
-        className="deal-card-image"
-      />
-    }
-   
-  >
-    
-    <div className="deal-card-top">
-        <span className="deal-location"><span className="deal-landmark">{landmark},</span> {city}</span>
-        <span className="deal-price">{price} Rs</span>
-    </div>
-    <span className="deal-airline">{airline}</span>
-    
-  </Card>
-);
+const Dealscard = ({ image, landmark, city, price, airline }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/flights?source=Mumbai&destination=${encodeURIComponent(city)}`);
+  };
+
+  return (
+    <Card
+      style={{ width: 300, cursor: 'pointer' }}
+      cover={
+        <img
+          alt={landmark}
+          src={image}
+          className="deal-card-image"
+        />
+      }
+      onClick={handleClick}
+      hoverable
+    >
+      <div className="deal-card-top">
+        <span className="deal-location">
+          <span className="deal-landmark">{landmark},</span> {city}
+        </span>
+        <span className="deal-price">{price}</span>
+      </div>
+      <span className="deal-airline">{airline}</span>
+    </Card>
+  );
+};
+
 export default Dealscard;

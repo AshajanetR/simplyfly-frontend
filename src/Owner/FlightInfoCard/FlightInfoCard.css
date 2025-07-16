@@ -1,0 +1,58 @@
+.flight-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #c2c2c2; 
+  padding: 15px 20px;
+  width: 700px;
+  margin: 20px auto;
+  background-color: white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.flight-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.airline-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.airline-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.duration {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.airline-name {
+  font-size: 12px;
+  color: #8c8c8c;
+  margin-top: 2px;
+}
+
+.flight-middle {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  color: #27273F
+}
+
+.flight-right {
+  flex: 1;
+  text-align: right;
+  font-size: 15px;
+  color: #27273F;
+}

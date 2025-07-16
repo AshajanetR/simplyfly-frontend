@@ -1,7 +1,5 @@
-// Pages/Seats/Seats.jsx
-
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import FlightInfoCard from '../../Components/FlightInfoCard/FlightInfoCard';
@@ -10,60 +8,69 @@ import Button from '../../Components/Button/ButtonComp';
 
 import SeatSelector from '../../Components/SeatSelector/SeatSelector';
 import NewBusinessSeats from '../../Components/SeatSelector/NewBusinessSeats';
-import {API_BASE_URL} from '../../apiConfig'
-import './Seats.css';
-// import Seatselector2 from '../../Components/SeatSelector/Seatelector2';
+import Seatselector2 from '../../Components/SeatSelector/Seatselector2';
 
-import Seatselector2 from '../../Components/SeatSelector/Seatselector2'
+import { API_BASE_URL } from '../../apiConfig';
+import './Seats.css';
 import axios from 'axios';
 
+// ✅ Import the correct reset action
+import { resetSeats } from '../../Store/seatSlice';
+
 const Seats = () => {
+  const dispatch = useDispatch();
+
   const passengerRedux = useSelector((state) => state.passenger?.passengers || []);
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const count = useSelector((state) => state.flight.adults);
 
   const [passengers, setPassengers] = useState([]);
-  const [flightbook,setflightbook] = useState([]);
-  const allSeatNos = flightbook.flatMap(booking => 
-  booking.passengers.map(passenger => passenger.seatNo)
-);
+  const [flightbook, setFlightbook] = useState([]);
 
-console.log(allSeatNos);
-const seatData = () =>{
-  if (passengerRedux.length > 0) {
+  // Seat No arrays
+  const bookedSeatNos = flightbook
+    .filter((booking) => booking.bookingStatus !== 'CANCELLED')
+    .flatMap((booking) => booking.passengers.map((p) => p.seatNo));
+
+  const canceledSeatNos = flightbook
+    .filter((booking) => booking.bookingStatus === 'CANCELLED')
+    .flatMap((booking) => booking.passengers.map((p) => p.seatNo));
+
+  console.log("Canceled seats ", canceledSeatNos);
+  console.log("Booked Seats ", bookedSeatNos);
+
+  const seatData = () => {
+    if (passengerRedux.length > 0) {
       setPassengers(passengerRedux);
     } else {
       const stored = JSON.parse(localStorage.getItem('passengerInfo')) || [];
       setPassengers(stored);
     }
-}
+  };
 
-  useEffect(() => {
-    // Sync passengers from Redux or fallback to localStorage
-    if (passengers.length === 0){
-    seatData()
-    }
-    fetchseatnos();
-  }, []);
-  const flightId = JSON.parse(localStorage.getItem("Flight"));
-  console.log("flightid",flightId.flightId)
-  const token = localStorage.getItem("token");
-  
-  const fetchseatnos = async()=>{
+  const flightId = JSON.parse(localStorage.getItem('Flight'));
+  const token = localStorage.getItem('token');
+
+  const fetchSeatNos = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/bookings/flight/${flightId.flightId}`,{
-      headers:{
-        Authorization: `Bearer ${token}`
-      }
-    })
-    console.log(res.data)
-    setflightbook(res.data)
+      const res = await axios.get(`${API_BASE_URL}/api/bookings/flight/${flightId.flightId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setFlightbook(res.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-   
+  };
 
-  }
+  // ✅ Clear selected seats from Redux and localStorage on mount
+  useEffect(() => {
+    dispatch(resetSeats());
+    localStorage.removeItem('selectedSeats');
+    seatData();
+    fetchSeatNos();
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
@@ -78,9 +85,18 @@ const seatData = () =>{
 
       {/* Seat Maps */}
       <div className="box-seats">
-        <SeatSelector allSeatNos ={allSeatNos} />
-        <NewBusinessSeats allSeatNos ={allSeatNos} />
-        <Seatselector2 allSeatNos ={allSeatNos} />
+        <SeatSelector
+          bookedSeatNos={bookedSeatNos}
+          canceledSeatNos={canceledSeatNos}
+        />
+        <NewBusinessSeats
+          bookedSeatNos={bookedSeatNos}
+          canceledSeatNos={canceledSeatNos}
+        />
+        <Seatselector2
+          bookedSeatNos={bookedSeatNos}
+          canceledSeatNos={canceledSeatNos}
+        />
       </div>
 
       {/* Passenger Info Cards with assigned seats */}
@@ -89,7 +105,7 @@ const seatData = () =>{
           <PassengerSeatCard
             key={index}
             passenger={passenger}
-            seatNumber={selectedSeats[index] || "Not Assigned"}
+            seatNumber={selectedSeats[index] || 'Not Assigned'}
           />
         ))}
       </div>

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import "./BookingHistoryCard.css";
 import axios from "axios";
 import html2pdf from "html2pdf.js";
@@ -17,23 +17,37 @@ const BookingHistoryCard = ({ booking, onCancel }) => {
   const now = new Date();
   const isFutureDeparture = departureDate > now;
 
+  // ✅ List of 5 saved image URLs
+  const imageList = useMemo(() => [
+    "https://images.unsplash.com/photo-1569865867048-34cfce8d58fe?q=80&w=678&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1164&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1492136344046-866c85e0bf04?q=80&w=1164&auto=format&fit=crop",
+    "https://plus.unsplash.com/premium_photo-1661938399624-3495425e5027?q=80&w=1170&auto=format&fit=crop",
+    "https://plus.unsplash.com/premium_photo-1694475634077-e6e4b623b574?q=80&w=1071&auto=format&fit=crop",
+  ], []);
+
+  // ✅ Pick one random image once
+  const randomImage = useMemo(() => {
+    const index = Math.floor(Math.random() * imageList.length);
+    return imageList[index];
+  }, [imageList]);
+
   const handleCancelBooking = async () => {
     try {
-      // ✅ Generate PDF receipt
-      html2pdf().from(receiptRef.current).save(`Booking_${booking.bookingId}_Receipt.pdf`);
+      html2pdf()
+        .from(receiptRef.current)
+        .save(`Booking_${booking.bookingId}_Receipt.pdf`);
 
-      // ✅ Call cancel API
-     await axios.put(
-  `http://localhost:8085/api/bookings/cancelbooking/${booking.bookingId}`,
-  {}, // 👈 empty body
-  {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  }
-);
+      await axios.put(
+        `http://localhost:8085/api/bookings/cancelbooking/${booking.bookingId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
-      // ✅ Update status in parent
       onCancel(booking.bookingId);
     } catch (error) {
       console.error("Cancel booking failed:", error);
@@ -44,16 +58,25 @@ const BookingHistoryCard = ({ booking, onCancel }) => {
     <div className="booking-card">
       <div className="booking-image">
         <img
-          src="https://images.unsplash.com/photo-1569865867048-34cfce8d58fe?q=80&w=678&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={randomImage}
           alt={`Flight ${flight.flightNumber}`}
         />
       </div>
+
       <div className="booking-content">
         <h2>Booking #{booking.bookingId}</h2>
-        <h3 className="booking-status">
-          Airline: {flight.airlineName || "N/A"}
-        </h3>
-        <p className="booking-status">{booking.bookingStatus}</p>
+        <h3 className="booking-status">Airline: {flight.airlineName || "N/A"}</h3>
+        <p className="booking-status">
+          Status:{" "}
+          <span
+            style={{
+              color: booking.bookingStatus === "CANCELLED" ? "red" : "green",
+              fontWeight: "bold",
+            }}
+          >
+            {booking.bookingStatus}
+          </span>
+        </p>
         <p className="booking-date">Booked on: {booking.bookingDate}</p>
         <p className="booking-total">Total Fare: ₹{booking.totalFare}</p>
 
@@ -77,14 +100,15 @@ const BookingHistoryCard = ({ booking, onCancel }) => {
           ))}
         </ul>
 
-        {isFutureDeparture && (
+        {/* ✅ Show button only for future, active bookings */}
+        {isFutureDeparture && booking.bookingStatus !== "CANCELLED" && (
           <button className="booking-btn" onClick={handleCancelBooking}>
             Cancel Booking
           </button>
         )}
       </div>
 
-      {/* ✅ Hidden receipt for html2pdf */}
+      {/* ✅ Hidden PDF receipt template */}
       <div style={{ display: "none" }}>
         <div ref={receiptRef}>
           <h1>Booking Cancellation Receipt</h1>
