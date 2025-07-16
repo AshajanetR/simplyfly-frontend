@@ -1,6 +1,6 @@
 .landing-page{
-    background-image: url('../../images/Hero.png');
-    height: 80vh;
+    /* background-image: url('../../images/Hero.png'); */
+    height: 90vh;
     /* padding-top: 50px; */
     display: flex;
     align-items: center;
@@ -10,11 +10,21 @@
 .click-book-fly {
   font-size: 68px;
   font-weight: bold;
-  background: linear-gradient(45deg, #3b82f6, #8b5cf6); /* blue to violet */
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-align: center;
   letter-spacing: 1px;
   padding-bottom: 10px;
+}
+ 
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
 }

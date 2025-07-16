@@ -98,7 +98,7 @@ const Tickets = () => {
         </div>
         <FlightSummaryCard getAmt={getAmt} flight={flightInfo} />
       </div>
-      <div classname="buttons-pay">
+      <div classname="buttons-pay1">
       <Button onClick={handlebookagain}>Book Again</Button>
       </div>
     </div>

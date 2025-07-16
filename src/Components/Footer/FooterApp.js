@@ -11,6 +11,7 @@ const FooterApp = () => {
       
       <div className="footer-logo">
         <img src={logo} alt='SimplyFly Logo'/>
+
       </div>
 
       <div>
