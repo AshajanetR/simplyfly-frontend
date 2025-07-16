@@ -6,6 +6,7 @@ import FlightSummaryCard from '../../Components/FlightSummaryCard/FlightSummaryC
 import './Tickets.css';
 import axios from 'axios';
 import { Button } from 'antd';
+import { useSelector } from 'react-redux';
 
 const Tickets = () => {
   // const { bookingId } = useParams();

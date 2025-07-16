@@ -22,7 +22,7 @@ const DCardApi = () => {
     image:
       'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1164&auto=format&fit=crop',
     landmark: 'Statue of Liberty',
-    city: 'New York',
+    city: 'Mumbai',
     price: '25,000 Rs',
     airline: 'Emirates',
   },
