@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BookingHistoryCard from "../../Components/BookingHistoryCard/BookingHistoryCard";
-import "./MyTrips.css"; // 👈 create this CSS file
+import "./MyTrips.css";
 import { useSelector } from "react-redux";
 
 const MyTrips = () => {
   const [bookings, setBookings] = useState([]);
-  const user = useSelector((state) => state.auth.user)
-  console.log("USer id",user.userId)
+  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -15,7 +14,7 @@ const MyTrips = () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          `http://localhost:8085/api/bookings/user/${user.userId}`,
+          `http://localhost:8086/api/bookings/user/${user.userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -28,7 +27,7 @@ const MyTrips = () => {
         const bookingsWithFlights = await Promise.all(
           bookingData.map(async (booking) => {
             const flightRes = await axios.get(
-              `http://localhost:8085/api/flights/${booking.flightId}`,
+              `http://localhost:8086/api/flights/${booking.flightId}`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,

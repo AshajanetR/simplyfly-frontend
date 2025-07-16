@@ -55,7 +55,7 @@ const Seats = () => {
 
   const fetchSeatNos = async () => {
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/bookings/flight/${flightId.flightId}`, {
+      const res = await axios.get(`${API_BASE_URL}/api/bookings/flightuser/${flightId.flightId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

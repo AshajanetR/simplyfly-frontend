@@ -13,7 +13,7 @@ const DCardApi = () => {
     image:
       'https://images.unsplash.com/photo-1492136344046-866c85e0bf04?q=80&w=1164&auto=format&fit=crop',
     landmark: 'Eiffel Tower',
-    city: 'Paris',
+    city: 'Delhi',
     price: '15,000 Rs',
     airline: 'Indigo Airlines',
   },
@@ -22,7 +22,7 @@ const DCardApi = () => {
     image:
       'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1164&auto=format&fit=crop',
     landmark: 'Statue of Liberty',
-    city: 'New York',
+    city: 'Mumbai',
     price: '25,000 Rs',
     airline: 'Emirates',
   },

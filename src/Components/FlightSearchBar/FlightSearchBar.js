@@ -15,19 +15,20 @@ const FlightSearchBar = ({ onSearchComplete }) => {
 
   const handleSearch = async () => {
     const token = localStorage.getItem("token");
+    if(!token) {
+      navigate("/signIn");
+      return
+    }
     console.log(date)
 
     const formattedDeparture = date?.depart
       ? dayjs(date.depart).format("YYYY-MM-DDTHH:mm:ss")
       : null;
 
-    const arrival = dayjs("2025-07-23 00:00:00.000000").format("YYYY-MM-DDTHH:mm:ss");
-
     const data = {
       source: from,
       destination: to,
       depertureT: formattedDeparture,
-      arrivalT: arrival,
       adults,
       minors
     };

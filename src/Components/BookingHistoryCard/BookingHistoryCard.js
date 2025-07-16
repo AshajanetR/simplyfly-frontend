@@ -39,7 +39,7 @@ const BookingHistoryCard = ({ booking, onCancel }) => {
         .save(`Booking_${booking.bookingId}_Receipt.pdf`);
 
       await axios.put(
-        `http://localhost:8085/api/bookings/cancelbooking/${booking.bookingId}`,
+        `http://localhost:8086/api/bookings/cancelbooking/${booking.bookingId}`,
         {},
         {
           headers: {

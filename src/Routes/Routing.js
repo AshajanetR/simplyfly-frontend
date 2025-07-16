@@ -41,6 +41,7 @@ const Routing = () => {
         <Route path="/update-flight/:id" element={<UpdateFlight />} />
         <Route path="/viewFlight/:id" element={<ViewFlight />} />
         <Route path="/view-bookings/:flightId" element={<ViewBookings />} />
+        <Route path="/tickets" element={<Tickets />} />
       </Routes>
     </div>
   );

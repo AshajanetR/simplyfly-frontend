@@ -5,7 +5,7 @@ import "./SeatSelector.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addSeat, removeSeat } from "../../Store/seatSlice";
 
-// Generate seat rows for rows 6 to 18
+// Generate seat rows from 6 to 18
 const generateAltSeats = () => {
   const seatLetters = ["A", "B", "C", "D", "E", "F"];
   const rows = [];
@@ -20,7 +20,6 @@ const SeatSelector2 = ({ bookedSeatNos = [], canceledSeatNos = [] }) => {
   const { adults } = useSelector((state) => state.flight);
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const dispatch = useDispatch();
-  const seatRows = generateAltSeats();
 
   const handleSelect = (seat) => {
     const isBooked = bookedSeatNos.includes(seat);
@@ -42,18 +41,17 @@ const SeatSelector2 = ({ bookedSeatNos = [], canceledSeatNos = [] }) => {
 
   return (
     <div className="seat-selector">
-      {seatRows.map(({ row, seats }) => (
+      {generateAltSeats().map(({ row, seats }) => (
         <div key={row} className="seat-row">
           <span className="row-number">{row}</span>
           {seats.map((seat, index) => {
-            const isGap = index === 2;
             const isBooked = bookedSeatNos.includes(seat);
             const isCanceled = canceledSeatNos.includes(seat);
             const isDisabled = isBooked && !isCanceled;
 
             return (
               <React.Fragment key={seat}>
-                {isGap && <div className="seat-gap" />}
+                {index === 3 && <div className="seat-gap" />}
                 <div
                   className={`seat 
                     ${selectedSeats.includes(seat) ? "selected" : ""} 
@@ -70,6 +68,5 @@ const SeatSelector2 = ({ bookedSeatNos = [], canceledSeatNos = [] }) => {
     </div>
   );
 };
-
 
 export default SeatSelector2;

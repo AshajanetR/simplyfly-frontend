@@ -34,22 +34,16 @@
   transition: background-color 0.2s ease;
 }
 
-/* Creates aisle after 3rd seat (between C and D) */
-.seat:nth-child(5) {
-  margin-left: 24px;
-}
-
 .seat:hover {
   background-color: #4a48c9;
 }
 
 .seat.selected {
-  background-color: #f05454;
+  background-color: #0cb900;
 }
 
-/* ✅ New: Booked seat style */
 .seat.booked {
-  background-color: #3f3d3d;   /* Light gray for booked */
+  background-color: #3f3d3d;
   cursor: not-allowed;
   color: #fff;
   pointer-events: none;
@@ -59,6 +53,10 @@
   background-color: #eee;
   cursor: default;
   color: transparent;
+}
+
+.seat-gap {
+  width: 24px;
 }
 
 .exit-row {

@@ -11,12 +11,10 @@
   margin-bottom: 2rem;
   text-align: center;
   padding-bottom: 0.5rem;
-  /* border-bottom: 3px solid #5a67d8; */
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
 }
-
 
 .no-bookings {
   text-align: center;
@@ -26,20 +24,14 @@
 
 .my-trips-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 5.5rem;
-}
-
-/* Optional: give BookingHistoryCard a uniform style if needed */
-/* .booking-card {
-  background-color: #f9f9f9;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+  gap: 2rem;
   padding: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.booking-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(90, 103, 216, 0.15);
-} */
+/* Responsive adjustment for smaller screens */
+@media (max-width: 768px) {
+  .my-trips-grid {
+    grid-template-columns: 1fr;
+  }
+}

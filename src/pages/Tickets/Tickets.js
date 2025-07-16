@@ -36,7 +36,7 @@ const Tickets = () => {
 
         // Fetch booking details
         const bookingRes = await axios.get(
-          `http://localhost:8085/api/bookings/${bookid}`,
+          `http://localhost:8086/api/bookings/${bookid}`,
           config
         );
         const booking = bookingRes.data;
@@ -44,7 +44,7 @@ const Tickets = () => {
 
         // Fetch flight details
         const flightRes = await axios.get(
-          `http://localhost:8085/api/flights/${flightId}`,
+          `http://localhost:8086/api/flights/${flightId}`,
           config
         );
         const flight = flightRes.data;
