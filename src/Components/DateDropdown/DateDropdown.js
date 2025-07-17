@@ -49,10 +49,10 @@ const DateDropdown = () => {
   const handleDone = () => {
     if (tripType === 'round') {
       setSelectedDates([departDate, returnDate]);
-      dispatch(setDate({ type: 'round', depart: departDate, return: returnDate })); // ✅ Redux update
+      dispatch(setDate({ type: 'round', depart: departDate, return: returnDate })); 
     } else {
       setSelectedDates(oneWayDate);
-      dispatch(setDate({ type: 'one', depart: oneWayDate })); // ✅ Redux update
+      dispatch(setDate({ type: 'one', depart: oneWayDate })); 
     }
     setOpen(false);
   };

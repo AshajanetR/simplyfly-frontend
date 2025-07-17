@@ -18,6 +18,10 @@ import OwnerAddFlight from '../Owner/OwnerAddFlight/OwnerAddFlight';
 import UpdateFlight from '../Owner/UpdateFlight/UpdateFlight';
 import ViewFlight from '../Owner/ViewFlight/ViewFlight';
 import ViewBookings from '../Owner/ViewBookings/ViewBookings';
+import Ticket from '../Components/Ticket/Ticket';
+import AdminHome from '../Admin/AdminHome/AdminHome';
+import AllOwnerPage from '../Admin/OwnerCard/AllOwnerPage';
+import AdminProfile from '../Admin/AdminProfile/AdminProfile';
 
 const Routing = () => {
   return (
@@ -29,19 +33,22 @@ const Routing = () => {
         <Route path="/flights" element={<Flights />} />
         <Route path="/passengers" element={<Passenger />} />
         <Route path="/seats" element={<Seats />} />
+        <Route path="/tickets" element={<Tickets />} />
         <Route path="/paymentDetails" element={<PaymentDetails />} />
         <Route path="/ownerhome" element={<OwnerHome />} />
+        <Route path="/adminhome" element={<AdminHome />} />
         <Route path="/paymentConfirm" element={<PaymentConfirm />} />
         <Route path="/tickets/:bookingId" element={<Tickets />} />
         <Route path="/home" element={<Home />} />
         <Route path="/myTrips" element={<MyTrips />} />
         <Route path="/profileInfo" element={<Profile />} />
         <Route path="/ownerProfile" element={<OwnerProfile />} />
+        <Route path="/adminProfile" element={<AdminProfile />} />
         <Route path="/addFlight" element={<OwnerAddFlight/>} />
         <Route path="/update-flight/:id" element={<UpdateFlight />} />
         <Route path="/viewFlight/:id" element={<ViewFlight />} />
+        <Route path="/allowners" element={<AllOwnerPage />} />
         <Route path="/view-bookings/:flightId" element={<ViewBookings />} />
-         <Route path="/tickets" element={<Tickets/>} />
       </Routes>
     </div>
   );

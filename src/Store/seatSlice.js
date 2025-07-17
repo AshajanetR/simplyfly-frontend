@@ -1,4 +1,4 @@
-// Store/seatSlice.js
+
 
 import { createSlice } from '@reduxjs/toolkit';
 

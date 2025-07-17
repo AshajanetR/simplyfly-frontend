@@ -9,7 +9,7 @@ const FlightCard = ({flight : propFlight}) => {
       const stored = localStorage.getItem("flightSearch");
       if (stored) {
         const parsed = JSON.parse(stored);
-        return parsed.response?.[0]; // Or use a more specific flight
+        return parsed.response?.[0]; 
       }
       return null;
     })();

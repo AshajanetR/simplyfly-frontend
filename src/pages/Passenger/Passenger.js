@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const Passenger = () => {
-  const { state } = useLocation(); // contains flight & adult
+  const { state } = useLocation(); 
   const { flight, adults } = state || {};
   console.log(adults);
   useEffect(()=>{
@@ -22,7 +22,7 @@ const Passenger = () => {
     <div>
       <div className='pass-container'>
         <div className='left1'>
-          {/* Moved buttons into PassengerInfo */}
+         
           <PassengerInfo adultCount={adults} flight={flight} />
         </div>
         <div className='right2'>

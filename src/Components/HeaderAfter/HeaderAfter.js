@@ -53,7 +53,7 @@ const HeaderAfter = () => {
       </div>
 
       <div className="nav-links">
-        {/* 🔁 Replace Link with button-like behavior */}
+       
         <span className="link" onClick={goToFlights}>Flights</span>
         <Link to="/myTrips" className="link">My Trips</Link>
         <Avatar 

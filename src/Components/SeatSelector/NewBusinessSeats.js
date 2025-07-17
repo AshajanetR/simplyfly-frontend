@@ -1,4 +1,4 @@
-// Components/SeatSelector/NewBusinessSeats.jsx
+
 
 import React from "react";
 import "./NewBusinessSeats.css";

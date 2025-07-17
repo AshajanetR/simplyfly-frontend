@@ -37,7 +37,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (user?.userId) {
-      fetchUser(user.userId); // fetch on first mount
+      fetchUser(user.userId); 
     }
   }, [user]);
 
@@ -67,7 +67,7 @@ const Profile = () => {
       );
 
       message.success("Profile updated successfully!");
-      fetchUser(user.userId); // refresh updated form
+      fetchUser(user.userId); 
     } catch (error) {
       console.error("Update failed:", error);
       message.error("Failed to update profile.");

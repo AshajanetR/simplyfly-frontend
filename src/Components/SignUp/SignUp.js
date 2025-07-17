@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
-import { LockOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Typography, Modal, Select, message } from 'antd';
+import {
+  LockOutlined,
+  PhoneOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
+import {
+  Button,
+  Form,
+  Input,
+  Typography,
+  Modal,
+  Select,
+  message,
+} from 'antd';
 import { useDispatch } from 'react-redux';
 import { signupSuccess } from '../../Store/signupSlice';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../apiConfig';
 
 const { Option } = Select;
 const { Title } = Typography;
-
-const API_BASE_URL = 'http://localhost:8085';
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -17,8 +28,10 @@ const SignUp = () => {
 
   const [form] = Form.useForm();
   const [ownerForm] = Form.useForm();
+  const [adminForm] = Form.useForm();
 
   const [ownerModalVisible, setOwnerModalVisible] = useState(false);
+  const [adminModalVisible, setAdminModalVisible] = useState(false);
   const [userPayload, setUserPayload] = useState(null);
   const [createdUserId, setCreatedUserId] = useState(null);
 
@@ -28,20 +41,30 @@ const SignUp = () => {
       userEmail: values.email,
       userPwd: values.password,
       userContact: values.contact,
-      userType: values.role
+      userType: values.role,
     };
 
     if (values.role === 'OWNER') {
-      setUserPayload(payload); // Save user data for later
-      setOwnerModalVisible(true); // Open modal
+      setUserPayload(payload);
+      setOwnerModalVisible(true);
+    } else if (values.role === 'ADMIN') {
+      setUserPayload(payload);
+      setAdminModalVisible(true);
     } else {
-      registerUser(payload); // Directly register if not OWNER
+      registerUser(payload);
     }
   };
 
-  const registerUser = async (payload, ownerData = null) => {
+  const registerUser = async (payload, ownerData = null, extraData = null) => {
     try {
-      const userResponse = await axios.post(`${API_BASE_URL}/api/auth/register`, payload);
+      const userResponse = await axios.post(
+        `${API_BASE_URL}/api/auth/register`,
+        payload
+      );
+
+      console.log("Payload", payload);
+      console.log("Extra data", extraData);
+
       const savedUser = userResponse.data;
       setCreatedUserId(savedUser.userId);
 
@@ -49,29 +72,48 @@ const SignUp = () => {
         await axios.post(`${API_BASE_URL}/api/auth/register-owner`, {
           airlineName: ownerData.airlineName,
           licenseNumber: ownerData.licenseNumber,
-          userId: savedUser.userId
+          userId: savedUser.userId,
         });
+      }
+
+      if (payload.userType === 'ADMIN' && extraData) {
+        try {
+          await axios.post(`${API_BASE_URL}/api/auth/admin-register`, {
+            uniqueId: extraData.uniqueId,
+            userId: savedUser.userId,
+          });
+        } catch (error) {
+          alert("Can't register admin");
+          console.log("Admin register error", error);
+        }
       }
 
       dispatch(signupSuccess(savedUser));
       message.success('Account created successfully!');
       navigate('/signIn');
     } catch (error) {
-      console.error("Signup error:", error);
+      console.error('Signup error:', error);
       message.error('Signup failed. Please try again.');
     }
   };
 
   const handleOwnerSubmit = () => {
-    ownerForm.validateFields().then(values => {
+    ownerForm.validateFields().then((values) => {
       setOwnerModalVisible(false);
       registerUser(userPayload, values);
     });
   };
 
+  const handleAdminSubmit = () => {
+    adminForm.validateFields().then((values) => {
+      setAdminModalVisible(false);
+      registerUser(userPayload, null, values);
+    });
+  };
+
   return (
     <>
-      {/* Main Signup Modal */}
+      
       <Modal open={true} footer={null}>
         <div style={{ textAlign: 'center', marginBottom: 20 }}>
           <Title level={4}>Sign up for SimplyFly</Title>
@@ -111,7 +153,11 @@ const SignUp = () => {
             label="Password"
             rules={[{ required: true, message: 'Please input your Password!' }]}
           >
-            <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
+            <Input
+              prefix={<LockOutlined />}
+              type="password"
+              placeholder="Password"
+            />
           </Form.Item>
 
           <Form.Item
@@ -130,7 +176,11 @@ const SignUp = () => {
               }),
             ]}
           >
-            <Input prefix={<LockOutlined />} type="password" placeholder="Confirm Password" />
+            <Input
+              prefix={<LockOutlined />}
+              type="password"
+              placeholder="Confirm Password"
+            />
           </Form.Item>
 
           <Form.Item
@@ -142,15 +192,23 @@ const SignUp = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button block type="primary" htmlType="submit" style={{ backgroundColor: '#605DEC' }}>
+            <Button
+              block
+              type="primary"
+              htmlType="submit"
+              style={{ backgroundColor: '#605DEC' }}
+            >
               Create Account
             </Button>
-            or <Link to="/signIn" style={{ color: '#605DEC' }}>Login now!</Link>
+            or{' '}
+            <Link to="/signIn" style={{ color: '#605DEC' }}>
+              Login now!
+            </Link>
           </Form.Item>
         </Form>
       </Modal>
 
-      {/* Owner Additional Details Modal */}
+     
       <Modal
         title="Owner Registration"
         open={ownerModalVisible}
@@ -172,10 +230,35 @@ const SignUp = () => {
             label="License Number"
             rules={[
               { required: true, message: 'License number is required' },
-              { pattern: /^\d{10}$/, message: 'License number must be exactly 10 digits' }
+              {
+                pattern: /^\d{10}$/,
+                message: 'License number must be exactly 10 digits',
+              },
             ]}
           >
             <Input maxLength={10} placeholder="Enter 10-digit license number" />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      
+      <Modal
+        title="Admin Registration"
+        open={adminModalVisible}
+        onCancel={() => setAdminModalVisible(false)}
+        onOk={handleAdminSubmit}
+        okText="Submit"
+      >
+        <Form form={adminForm} layout="vertical">
+          <Form.Item
+            name="uniqueId"
+            label="Unique ID"
+            rules={[
+              { required: true, message: 'Unique ID is required' },
+              { min: 5, message: 'Unique ID must be at least 5 characters' },
+            ]}
+          >
+            <Input placeholder="Enter unique admin ID" />
           </Form.Item>
         </Form>
       </Modal>

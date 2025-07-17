@@ -5,16 +5,16 @@ import dayjs from 'dayjs';
 const FlightInfoCard = () => {
   const { from, to, date,adults } = useSelector((state) => state.flight);
 
-  const dates = {
-  depart: date,
-};
+//   const dates = {
+//   depart: date,
+// };
 
-const departureTime = dates?.depart
-  ? dayjs(new Date(dates.depart)).format("MMM D | h:mm A")
-  : "Not Available";
-console.log("departureTime ",departureTime);
+// const departureTime = dates?.depart
+//   ? dayjs(new Date(dates.depart)).format("MMM D | h:mm A")
+//   : "Not Available";
+// console.log("departureTime ",departureTime);
 
-  const arrivalTime = "Nov 15 | 10:30 AM"; // 🔁 Replace with real data if you store it
+  const arrivalTime = "Nov 15 | 10:30 AM"; 
   console.log("From to date adults",from,to,date,adults)
   return (
     <div className="flight-card1">
@@ -31,7 +31,8 @@ console.log("departureTime ",departureTime);
       </div>
 
       <div className="card-section middle">
-        <div className="date-time">{departureTime}</div>
+        {/* <div className="date-time">{departureTime}</div> */}
+        <div className="date-time">{dayjs(date).format("DD MMM, hh:mm A")}</div>
         <div className="label">Departing</div>
         <div className="notch"></div>
       </div>

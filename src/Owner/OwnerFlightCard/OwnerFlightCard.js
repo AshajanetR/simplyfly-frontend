@@ -24,7 +24,7 @@ const OwnerFlightCard = ({ flight, onUpdate, onDelete, onView }) => {
 
   const handleViewClick = (e) => {
     e.stopPropagation();
-    onView(flight); // 🔥 use the passed handler to navigate with state
+    onView(flight); 
   };
 
   return (

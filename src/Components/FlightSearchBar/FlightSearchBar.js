@@ -49,17 +49,17 @@ const FlightSearchBar = ({ onSearchComplete }) => {
       const text = await response.text();
       const result = text ? JSON.parse(text) : [];
 
-      // ✅ Store search result in localStorage
+     
       localStorage.setItem("flightSearch", JSON.stringify({ request: data, response: result }));
 
       console.log("Stored search:", { request: data, response: result });
 
-      // ✅ Notify parent if needed
+      
       if (onSearchComplete) {
         onSearchComplete(result);
       }
 
-      // ✅ Optional navigation (parent can skip this if already on /flights)
+     
       navigate("/flights");
     } catch (error) {
       console.error("Search failed:", error);

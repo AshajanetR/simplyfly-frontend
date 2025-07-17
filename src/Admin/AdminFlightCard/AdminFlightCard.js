@@ -1,7 +1,7 @@
 import React from 'react';
 import airlineLogo from "../../images/image25.png";
 import dayjs from 'dayjs';
-import './AdminFlightCard.css'; // optional: add styling here
+import './AdminFlightCard.css'; 
 
 const AdminFlightCard = ({ flight, onDelete, onUpdate, onViewSeats }) => {
   if (!flight) return null;

@@ -1,11 +1,11 @@
-// Components/SeatSelector/SeatSelector2.jsx
+
 
 import React from "react";
 import "./SeatSelector.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addSeat, removeSeat } from "../../Store/seatSlice";
 
-// Generate seat rows for rows 6 to 18
+
 const generateAltSeats = () => {
   const seatLetters = ["A", "B", "C", "D", "E", "F"];
   const rows = [];

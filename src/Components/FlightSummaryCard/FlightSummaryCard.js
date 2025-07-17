@@ -8,7 +8,7 @@ const { Text } = Typography;
 const FlightSummaryCard = ({getAmt}) => {
   const location = useLocation();
   const [flight, setFlight] = useState(null);
-  const [adults, setAdults] = useState(1); // default
+  const [adults, setAdults] = useState(1); 
   const [name, setName] = useState('');
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const FlightSummaryCard = ({getAmt}) => {
       setAdults(adultCount);
     }
   }
-}, []); // ✅ FIXED: Empty dependency array
+}, []); 
 
 
   useEffect(() => {

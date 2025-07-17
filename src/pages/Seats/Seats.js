@@ -14,7 +14,7 @@ import { API_BASE_URL } from '../../apiConfig';
 import './Seats.css';
 import axios from 'axios';
 
-// ✅ Import the correct reset action
+
 import { resetSeats } from '../../Store/seatSlice';
 
 const Seats = () => {
@@ -27,7 +27,7 @@ const Seats = () => {
   const [passengers, setPassengers] = useState([]);
   const [flightbook, setFlightbook] = useState([]);
 
-  // Seat No arrays
+  
   const bookedSeatNos = flightbook
     .filter((booking) => booking.bookingStatus !== 'CANCELLED')
     .flatMap((booking) => booking.passengers.map((p) => p.seatNo));
@@ -64,7 +64,7 @@ const Seats = () => {
     }
   };
 
-  // ✅ Clear selected seats from Redux and localStorage on mount
+ 
   useEffect(() => {
     dispatch(resetSeats());
     localStorage.removeItem('selectedSeats');
@@ -78,12 +78,12 @@ const Seats = () => {
 
   return (
     <div className="seats-page">
-      {/* Flight Information */}
+     
       <div className="flightInfoCard">
         <FlightInfoCard />
       </div>
 
-      {/* Seat Maps */}
+     
       <div className="box-seats">
         <SeatSelector
           bookedSeatNos={bookedSeatNos}
@@ -99,7 +99,7 @@ const Seats = () => {
         />
       </div>
 
-      {/* Passenger Info Cards with assigned seats */}
+      
       <div className="passenger-cards">
         {passengers.map((passenger, index) => (
           <PassengerSeatCard
@@ -110,7 +110,7 @@ const Seats = () => {
         ))}
       </div>
 
-      {/* Navigation Buttons */}
+      
       <div className="buttons-seats">
         <Link to="/passengers">
           <Button text="Back to Passengers" />

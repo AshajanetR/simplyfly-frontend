@@ -32,7 +32,7 @@ const Landing = () => {
         <div className='boxed-center'>
         <h1 className='click-book-fly'>Click ,Book ,Fly.</h1>
         <FlightSearchBar />
-        {/* <CompDropdown/> */}
+       
         </div>
        </div>
        <DCardApi />

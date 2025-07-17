@@ -25,15 +25,15 @@ const AdultDropdown = () => {
   }, []);
 
   const handleAdultChange = (newCount) => {
-    const count = Math.max(1, newCount);  // Minimum 1 adult
+    const count = Math.max(1, newCount);  
     setLocalAdults(count);
-    dispatch(setAdults(count));           // ✅ Update Redux state
+    dispatch(setAdults(count));          
   };
 
   const handleMinorChange = (newCount) => {
-    const count = Math.max(0, newCount);  // Minimum 0 minors
+    const count = Math.max(0, newCount);  
     setLocalMinors(count);
-    dispatch(setMinors(count));           // ✅ Update Redux state
+    dispatch(setMinors(count));          
   };
 
   const label = `${adults} Adult${adults > 1 ? 's' : ''}${minors > 0 ? `, ${minors} Minor${minors > 1 ? 's' : ''}` : ''}`;
@@ -52,14 +52,14 @@ const AdultDropdown = () => {
             <div className="control-buttons">
               <Button
                 icon={<MinusOutlined />}
-                onClick={() => handleAdultChange(adults - 1)} // ✅ Triggers Redux
+                onClick={() => handleAdultChange(adults - 1)} 
                 size="small"
                 className="count-btn"
               />
               <span>{adults}</span>
               <Button
                 icon={<PlusOutlined />}
-                onClick={() => handleAdultChange(adults + 1)} // ✅ Triggers Redux
+                onClick={() => handleAdultChange(adults + 1)} 
                 size="small"
                 className="count-btn"
               />
@@ -70,14 +70,14 @@ const AdultDropdown = () => {
             <div className="control-buttons">
               <Button
                 icon={<MinusOutlined />}
-                onClick={() => handleMinorChange(minors - 1)} // ✅ Triggers Redux
+                onClick={() => handleMinorChange(minors - 1)} 
                 size="small"
                 className="count-btn"
               />
               <span>{minors}</span>
               <Button
                 icon={<PlusOutlined />}
-                onClick={() => handleMinorChange(minors + 1)} // ✅ Triggers Redux
+                onClick={() => handleMinorChange(minors + 1)} 
                 size="small"
                 className="count-btn"
               />

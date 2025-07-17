@@ -25,7 +25,7 @@ const PaymentDetail = () => {
           <Form.Item  className="form-inline-group">
             
               <Form.Item>
-                  {/* <span>Billing address is same as Passenger 1</span> */}
+                  
                   <Checkbox>
                       Billing address is same as Passenger 1
                   </Checkbox>

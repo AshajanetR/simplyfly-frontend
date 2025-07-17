@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BookingHistoryCard from "../../Components/BookingHistoryCard/BookingHistoryCard";
-import "./MyTrips.css"; // 👈 create this CSS file
+import "./MyTrips.css"; 
 import { useSelector } from "react-redux";
 
 const MyTrips = () => {

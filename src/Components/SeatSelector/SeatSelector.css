@@ -34,7 +34,7 @@
   transition: background-color 0.2s ease;
 }
 
-/* Creates aisle after 3rd seat (between C and D) */
+
 .seat:nth-child(5) {
   margin-left: 24px;
 }
@@ -47,7 +47,7 @@
   background-color: #f05454;
 }
 
-/* ✅ New: Booked seat style */
+
 .seat.booked {
   background-color: #3f3d3d;   /* Light gray for booked */
   cursor: not-allowed;

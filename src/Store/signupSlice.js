@@ -1,8 +1,8 @@
-// src/store/signupSlice.js
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  userDetails: null,  // { email, name, contact, etc. }
+  userDetails: null, 
 };
 
 const signupSlice = createSlice({

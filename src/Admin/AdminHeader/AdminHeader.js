@@ -1,7 +1,7 @@
 import { Layout, Avatar } from 'antd';
 import './AdminHeader.css';
 import LogoImg from '../../images/LogoImg.png';
-import AdminProfileImg from '../../images/ProfileImg.jpg'; // Optional: replace with actual admin image
+import AdminProfileImg from '../../images/ProfileImg.jpg'; 
 import { Link, useNavigate } from 'react-router-dom';
 
 const { Header } = Layout;
@@ -10,7 +10,7 @@ const AdminHeader = () => {
   const navigate = useNavigate();
 
   const goToAdminProfile = () => {
-    navigate('/adminProfile'); // Adjust path if needed
+    navigate('/adminProfile'); 
   };
 
   return (
