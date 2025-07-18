@@ -47,9 +47,8 @@
   background-color: #f05454;
 }
 
-/* ✅ New: Booked seat style */
 .seat.booked {
-  background-color: #3f3d3d;   /* Light gray for booked */
+  background-color: #3f3d3d;  
   cursor: not-allowed;
   color: #fff;
   pointer-events: none;

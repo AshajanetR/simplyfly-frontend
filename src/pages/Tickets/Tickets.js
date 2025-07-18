@@ -43,14 +43,14 @@ const Tickets = () => {
         const booking = bookingRes.data;
         const flightId = booking.flightId;
 
-        // Fetch flight details
+        
         const flightRes = await axios.get(
           `http://localhost:8085/api/flights/${flightId}`,
           config
         );
         const flight = flightRes.data;
 
-        // Format passenger ticket data
+       
         const formattedData = booking.passengers.map((p) => ({
           airline: flight.airlineName || 'Unknown Airline',
           passengerName: p.passengerName,
@@ -99,7 +99,7 @@ const Tickets = () => {
         </div>
         <FlightSummaryCard getAmt={getAmt} flight={flightInfo} />
       </div>
-      <div classname="buttons-pay">
+      <div classname="buttons-pay1">
       <Button onClick={handlebookagain}>Book Again</Button>
       </div>
     </div>

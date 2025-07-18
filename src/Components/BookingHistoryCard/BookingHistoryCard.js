@@ -17,7 +17,7 @@ const BookingHistoryCard = ({ booking, onCancel }) => {
   const now = new Date();
   const isFutureDeparture = departureDate > now;
 
-  // ✅ List of 5 saved image URLs
+  
   const imageList = useMemo(() => [
     "https://images.unsplash.com/photo-1569865867048-34cfce8d58fe?q=80&w=678&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1164&auto=format&fit=crop",
@@ -26,7 +26,7 @@ const BookingHistoryCard = ({ booking, onCancel }) => {
     "https://plus.unsplash.com/premium_photo-1694475634077-e6e4b623b574?q=80&w=1071&auto=format&fit=crop",
   ], []);
 
-  // ✅ Pick one random image once
+  
   const randomImage = useMemo(() => {
     const index = Math.floor(Math.random() * imageList.length);
     return imageList[index];
@@ -100,7 +100,7 @@ const BookingHistoryCard = ({ booking, onCancel }) => {
           ))}
         </ul>
 
-        {/* ✅ Show button only for future, active bookings */}
+       
         {isFutureDeparture && booking.bookingStatus !== "CANCELLED" && (
           <button className="booking-btn" onClick={handleCancelBooking}>
             Cancel Booking
@@ -108,7 +108,7 @@ const BookingHistoryCard = ({ booking, onCancel }) => {
         )}
       </div>
 
-      {/* ✅ Hidden PDF receipt template */}
+      
       <div style={{ display: "none" }}>
         <div ref={receiptRef}>
           <h1>Booking Cancellation Receipt</h1>

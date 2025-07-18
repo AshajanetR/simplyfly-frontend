@@ -76,15 +76,7 @@ const PassengerInfo = ({ adultCount  }) => {
       ))}
 
       <Button type="primary" htmlType="submit">Add</Button>
-      {/* ✅ Buttons moved here */}
-      {/* <div className="buttons-passenger" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 20 }}>
-        <Link to="/flights">
-          <Button>Back to Flights</Button>
-        </Link>
-        
-          <Button block type="primary" htmlType="submit">Continue to Seats</Button>
-        
-      </div> */}
+      
     </Form>
   );
 };

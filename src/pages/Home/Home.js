@@ -9,6 +9,10 @@ const Home = () => {
     <div>
         <HeaderAfter />
         <div className='landing-page'>
+        <video className="bg-video" autoPlay muted loop playsInline>
+  <source src={require('../../images/flightbg.mp4')} type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
         <div className='boxed-center'>
         <h1 className='click-book-fly'>Click ,Book ,Fly.</h1>
         <FlightSearchBar />

@@ -61,7 +61,7 @@ const OwnerProfile = () => {
       });
 
       message.success("Profile updated successfully!");
-      navigate("/ownerHome"); // ✅ Navigate after success
+      navigate("/ownerHome"); 
     } catch (error) {
       console.error("Update failed:", error);
       message.error("Failed to update profile.");

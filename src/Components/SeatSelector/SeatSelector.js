@@ -1,11 +1,11 @@
-// Components/SeatSelector/SeatSelector.jsx
+
 
 import React from "react";
 import "./SeatSelector.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addSeat, removeSeat } from "../../Store/seatSlice";
 
-// Generates all seat rows for the plane
+
 const generateSeats = () => {
   const rows = [];
   const seatLetters = ["A", "B", "C", "D", "E", "F"];

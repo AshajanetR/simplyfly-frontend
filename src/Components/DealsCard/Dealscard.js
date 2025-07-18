@@ -24,12 +24,12 @@ const Dealscard = ({ image, landmark, city, price, airline }) => {
     });
     const flightData = response.data;
 
-    // ✅ Wrap in the expected format (same as search bar)
+   
     const searchPayload = {
       request: {
         source: "Mumbai",
         destination: city,
-        adults: 1 // default or dynamic
+        adults: 1 
       },
       response: flightData
     };

@@ -13,7 +13,7 @@ const PaymentConfirm = () => {
  const transactionId = location.state?.transId;
   
     const getAmt = (fare) => {
-      setAmt(fare + 121); // Add tax
+      setAmt(fare + 121); 
     };
     console.log(transactionId)
   return (

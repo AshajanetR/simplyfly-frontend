@@ -20,8 +20,8 @@ const OwnerHome = () => {
 
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
-  const [flightToDelete, setFlightToDelete] = useState(null); // 🟨 modal state
-  const [confirmVisible, setConfirmVisible] = useState(false); // 🟨 modal visible
+  const [flightToDelete, setFlightToDelete] = useState(null); 
+  const [confirmVisible, setConfirmVisible] = useState(false); 
   const navigate = useNavigate();
 
   const fetchFlights = async () => {
@@ -31,7 +31,7 @@ const OwnerHome = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFlights(response.data);
-      setFilteredFlights(response.data); // show all flights initially
+      setFilteredFlights(response.data); 
     } catch (err) {
       console.error("Error fetching flights", err);
       message.error("Failed to load your flights");
@@ -97,14 +97,14 @@ const OwnerHome = () => {
       <OwnerHeader />
       <h2 style={{ textAlign: "center", marginTop: "20px" }}>Your Flights</h2>
 
-      {/* 🔍 Search Bar */}
+      
       <div className="search-bar-wrapper">
         <FromDropdown value={from} onChange={setFrom} />
         <ToDropdown value={to} onChange={setTo} />
         <button className="search-button" onClick={handleSearch}>Search</button>
       </div>
 
-      {/* ✈️ Flight Cards */}
+      
       <div style={{ padding: "20px" }}>
         {loading ? (
           <p style={{ textAlign: "center", color: "#999" }}>Loading flights...</p>
@@ -123,7 +123,7 @@ const OwnerHome = () => {
         )}
       </div>
 
-      {/* 🧾 Delete Confirmation Modal */}
+      
       <Modal
         open={confirmVisible}
         title="Confirm Delete"

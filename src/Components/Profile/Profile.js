@@ -12,9 +12,9 @@ const API_BASE_URL = "http://localhost:8085";
 const Profile = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.user); // ✅ Redux user
+  const user = useSelector((state) => state.auth.user); 
 
-  // 🔄 Fetch latest user profile data from backend
+  
   const fetchUser = async (id) => {
     try {
       const token = localStorage.getItem("token");
@@ -37,7 +37,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (user?.userId) {
-      fetchUser(user.userId); // fetch on first mount
+      fetchUser(user.userId); 
     }
   }, [user]);
 
@@ -67,7 +67,7 @@ const Profile = () => {
       );
 
       message.success("Profile updated successfully!");
-      fetchUser(user.userId); // refresh updated form
+      fetchUser(user.userId); 
     } catch (error) {
       console.error("Update failed:", error);
       message.error("Failed to update profile.");

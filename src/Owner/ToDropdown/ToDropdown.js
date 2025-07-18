@@ -4,7 +4,7 @@ import './ToDropdown.css';
 import planeIcon from '../../images/ToAirplane.png';
 
 const { Option } = Select;
-const airports = ['Mumbai', 'Goa', 'Pune', 'Delhi', 'JFK'];
+const airports = ['Mumbai', 'Goa', 'Pune', 'Delhi', 'Coimbatore'];
 
 const ToDropdown = ({ value, onChange }) => {
   const customPlaceholder = (

@@ -76,7 +76,7 @@ const OwnerAddFlight = () => {
   return (
     <Modal open={true} footer={null} closable={false} width={600}>
       <div style={{ position: 'relative' }}>
-        {/* Close icon */}
+       
         <CloseOutlined
           onClick={handleClose}
           style={{

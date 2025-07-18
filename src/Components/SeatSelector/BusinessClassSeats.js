@@ -5,7 +5,7 @@ import { selectSeats } from "../../Store/seatSlice";
 
 const generateSeats = () => {
   const rows = [];
-  const seatsPerRow = 6; // A-B C D-E-F
+  const seatsPerRow = 6; 
   const seatLetters = ["A", "B", "C", "D", "E", "F"];
 
   for (let row = 19; row <= 31; row++) {
@@ -40,7 +40,7 @@ const SeatSelector = () => {
 
   const handleSelect = (seat) => {
     if (selectedSeats.includes(seat)) {
-      // Deselect if already selected
+     
       setSelectedSeats(selectedSeats.filter((s) => s !== seat));
     } else {
       if (selectedSeats.length < adults) {
@@ -58,7 +58,7 @@ const SeatSelector = () => {
           <span className="row-number">{row}</span>
 
           {seats.map((seat, index) => {
-            const isGap = index === 2; // A B —gap— C D E F
+            const isGap = index === 2; 
             return (
               <React.Fragment key={seat}>
                 {isGap && <div className="seat-gap" />}
@@ -76,7 +76,7 @@ const SeatSelector = () => {
         </div>
       ))}
 
-      {/* Optional: Show selected seats */}
+      
       <div className="selected-info">
         <strong>Selected Seats:</strong> {selectedSeats.join(", ") || "None"}
       </div>

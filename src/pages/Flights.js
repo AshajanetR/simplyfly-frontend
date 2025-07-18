@@ -5,22 +5,22 @@ import { Link } from 'react-router-dom';
 
 const Flights = () => {
   const [flights, setFlights] = useState([]);
-  const [adults, setAdults] = useState(1); // default to 1
+  const [adults, setAdults] = useState(1); 
 
   useEffect(() => {
     const storedData = localStorage.getItem("flightSearch");
     if (storedData) {
       const parsed = JSON.parse(storedData);
       setFlights(parsed.response || []);
-      setAdults(parsed.request?.adults || 1); // ✅ Extract adults count from stored request
+      setAdults(parsed.request?.adults || 1); 
     }
   }, []);
 
-  // ✅ Callback passed to FlightSearchBar
+ 
   const handleSearchComplete = (newFlights) => {
     setFlights(newFlights || []);
 
-    // Refresh adult count from localStorage after a new search
+    
     const storedData = localStorage.getItem("flightSearch");
     if (storedData) {
       const parsed = JSON.parse(storedData);

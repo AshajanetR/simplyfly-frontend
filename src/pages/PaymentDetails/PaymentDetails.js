@@ -13,7 +13,7 @@ const PaymentDetails = () => {
   const navigate = useNavigate();
 
   const getAmt = (fare) => {
-    setAmt(fare + 121); // Add tax
+    setAmt(fare + 121); 
   };
 
   const generateTransactionId = () => {
@@ -70,7 +70,7 @@ const PaymentDetails = () => {
 
       alert("Booking successful!");
 
-      // ✅ Navigate after booking succeeds
+     
       navigate("/paymentConfirm", { state: { transId: transactionId } });
 
     } catch (error) {

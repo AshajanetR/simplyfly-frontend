@@ -35,10 +35,11 @@
   gap: 2rem;
 }
 
-.buttons-pay{
+.buttons-pay1{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 20px 70px;
+    gap:30px;
     
 }

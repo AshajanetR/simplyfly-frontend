@@ -16,18 +16,18 @@ const App = () => {
   const flight = localStorage.getItem("flightSearch");
   if (flight) {
     try {
-      const parsedFlight = JSON.parse(flight); // ✅ parse the JSON string
+      const parsedFlight = JSON.parse(flight); 
       if (parsedFlight?.request?.adults !== undefined) {
-        dispatch(setAdults(parsedFlight.request.adults)); // ✅ safely access adults
+        dispatch(setAdults(parsedFlight.request.adults)); 
       }
       if (parsedFlight?.request?.source !== undefined) {
-        dispatch(setFrom(parsedFlight.request.source)); // ✅ safely access adults
+        dispatch(setFrom(parsedFlight.request.source)); 
       }
       if (parsedFlight?.request?.destination !== undefined) {
-        dispatch(setTo(parsedFlight.request.destination)); // ✅ safely access adults
+        dispatch(setTo(parsedFlight.request.destination)); 
       }
       if (parsedFlight?.request?.depertureT !== undefined) {
-        dispatch(setDate(parsedFlight.request.depertureT)); // ✅ safely access adults
+        dispatch(setDate(parsedFlight.request.depertureT));
       }
     } catch (error) {
       console.error("Error parsing flightSearch from localStorage:", error);
