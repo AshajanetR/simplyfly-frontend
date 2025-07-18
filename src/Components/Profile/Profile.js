@@ -12,9 +12,9 @@ const API_BASE_URL = "http://localhost:8085";
 const Profile = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.user); // ✅ Redux user
+  const user = useSelector((state) => state.auth.user); 
 
-  // 🔄 Fetch latest user profile data from backend
+  
   const fetchUser = async (id) => {
     try {
       const token = localStorage.getItem("token");
